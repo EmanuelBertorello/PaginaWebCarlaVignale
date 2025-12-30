@@ -1,0 +1,152 @@
+<!-- src/app/comps/servi/servi.html -->
+<section class="servi">
+  <div class="servi__wrap">
+    <h2 class="servi__title">Conocé más de nuestros productos</h2>
+    <p class="servi__subtitle">Realizá tu cotización</p>
+
+    <div class="servi__grid">
+      <article
+        class="servi-card"
+        *ngFor="let s of services"
+        [class.is-selected]="isSelected(s)"
+        (click)="select(s)"
+      >
+        <!-- Bloque principal (título + icono) -->
+        <div class="servi-card__main">
+          <div class="servi-card__label">
+            <p class="servi-card__name">{{ s.name }}</p>
+          </div>
+          <div class="servi-card__icon">
+            <span class="servi-card__emoji">{{ s.emoji }}</span>
+          </div>
+        </div>
+
+        <!-- Panel deslizante de cotización (overlay) -->
+        <div class="servi-card__details">
+          <ng-container [ngSwitch]="s.id">
+
+            <!-- AUTO -->
+            <ng-container *ngSwitchCase="'auto'">
+              <div class="servi-card__form">
+                <div class="servi-card__field">
+                  <label>Marca</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="autoMoto.auto.marca"
+                    placeholder="Ej.: Toyota"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <div class="servi-card__field">
+                  <label>Modelo</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="autoMoto.auto.modelo"
+                    placeholder="Ej.: Corolla"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <div class="servi-card__field">
+                  <label>Año</label>
+                  <input
+                    type="number"
+                    [(ngModel)]="autoMoto.auto.anio"
+                    placeholder="Ej.: 2019"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+              </div>
+
+              <p class="servi-card__msg">
+                Completá los datos de tu auto y enviá la consulta por WhatsApp.
+              </p>
+            </ng-container>
+
+            <!-- MOTO -->
+            <ng-container *ngSwitchCase="'moto'">
+              <div class="servi-card__form">
+                <div class="servi-card__field">
+                  <label>Marca</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="autoMoto.moto.marca"
+                    placeholder="Ej.: Honda"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <div class="servi-card__field">
+                  <label>Modelo</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="autoMoto.moto.modelo"
+                    placeholder="Ej.: CB 190"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <div class="servi-card__field">
+                  <label>Año</label>
+                  <input
+                    type="number"
+                    [(ngModel)]="autoMoto.moto.anio"
+                    placeholder="Ej.: 2022"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+              </div>
+
+              <p class="servi-card__msg">
+                Completá los datos de tu moto y enviá la consulta por WhatsApp.
+              </p>
+            </ng-container>
+
+            <!-- EMBARCACIONES -->
+            <ng-container *ngSwitchCase="'embarcaciones'">
+              <div class="servi-card__form">
+                <div class="servi-card__field">
+                  <label>Eslora</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="embarcacion.eslora"
+                    placeholder="Ej.: 5,50 m"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <div class="servi-card__field">
+                  <label>Motor</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="embarcacion.motor"
+                    placeholder="Ej.: 90 HP 4T"
+                    (click)="$event.stopPropagation()"
+                  />
+                </div>
+              </div>
+
+              <p class="servi-card__msg">
+                Completá los datos de tu embarcación y enviá la consulta por WhatsApp.
+              </p>
+            </ng-container>
+
+            <!-- RESTO DE PRODUCTOS -->
+            <ng-container *ngSwitchDefault>
+              <p class="servi-card__msg">
+                Quiero una cotización de seguro de
+                {{ s.name.toLowerCase() }}.
+              </p>
+            </ng-container>
+          </ng-container>
+
+          <a
+            class="servi-card__btn"
+            [href]="waHref(s)"
+            target="_blank"
+            rel="noopener"
+            (click)="$event.stopPropagation()"
+          >
+            Solicitar tu cotización
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

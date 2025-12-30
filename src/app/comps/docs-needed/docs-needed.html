@@ -1,0 +1,47 @@
+<section class="docs">
+  <!-- Título general -->
+  <header class="docs__header">
+    <h2 class="docs__title">En caso de siniestro</h2>
+
+    <p class="docs__lead">
+     ¿Qué documentación vas a necesitar?
+    </p>
+  </header>
+
+  <!-- Layout de dos columnas -->
+  <div class="docs__layout">
+    <!-- Columna izquierda: Obligatoria -->
+    <div class="docs__col docs__col--required">
+      <h3 class="docs__subtitle">Documentación obligatoria</h3>
+
+      <ul class="doc-list">
+        <li class="doc-item" *ngFor="let d of requiredDocs">
+          <div class="doc-item__icon">
+            <span>📄</span>
+          </div>
+          <div class="doc-item__body">
+            <p class="doc-item__title">{{ d.title }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna derecha: Opcional dentro de un recuadro -->
+    <aside class="docs__col docs__col--optional">
+      <div class="docs__optional-card">
+        <h3 class="docs__subtitle docs__subtitle--optional">
+          Documentación opcional
+        </h3>
+
+        <ul class="doc-list doc-list--optional">
+          <li class="doc-item" *ngFor="let d of optionalDocs">
+            <div class="doc-item__bullet"></div>
+            <div class="doc-item__body">
+              <p class="doc-item__title">{{ d.title }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>

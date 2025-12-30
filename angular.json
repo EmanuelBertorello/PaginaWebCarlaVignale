@@ -5,7 +5,9 @@
   "projects": {
     "carlav": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": { "style": "scss" }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -15,34 +17,22 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets",
+              { "glob": "**/*", "input": "public" }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputMode": "static"
           },
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
+                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
               "outputHashing": "all"
             },
@@ -57,12 +47,8 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "carlav:build:production"
-            },
-            "development": {
-              "buildTarget": "carlav:build:development"
-            }
+            "production": { "buildTarget": "carlav:build:production" },
+            "development": { "buildTarget": "carlav:build:development" }
           },
           "defaultConfiguration": "development"
         },
@@ -73,14 +59,14 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets",
+              { "glob": "**/*", "input": "public" }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ]
           }
         }
@@ -88,6 +74,6 @@
     }
   },
   "cli": {
-    "analytics": "6a8efd69-22a0-4b5f-9659-0fa55fecd066"
+    "analytics": "b746b166-e355-416b-99f0-3136e038c2fc"
   }
 }

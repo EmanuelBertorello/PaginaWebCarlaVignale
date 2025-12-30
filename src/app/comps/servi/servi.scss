@@ -1,0 +1,266 @@
+/* =========================
+   Componente SERVI (productos)
+   ========================= */
+
+.servi {
+  padding: clamp(40px, 6vw, 72px) 0 72px;
+  background: #f5f7fb; /* fondo suave tipo landing */
+}
+
+.servi__wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Título y subtítulo */
+
+.servi__title {
+  margin: 0 0 4px;
+  font-size: clamp(26px, 3.6vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0a2e50; /* azul fuerte */
+}
+
+.servi__subtitle {
+  margin: 0 0 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b6b6b;
+}
+
+/* Grid de tarjetas */
+
+.servi__grid {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .servi__grid {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .servi__grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .servi__grid {
+    grid-template-columns: minmax(220px, 1fr);
+  }
+}
+
+/* =========================
+   Tarjeta
+   ========================= */
+
+.servi-card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(10, 46, 80, 0.06);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  overflow: visible;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.servi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenido principal (nombre + icono) */
+
+.servi-card__main {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  align-items: center;
+  min-height: 110px;
+}
+
+.servi-card__label {
+  padding: 16px 18px;
+}
+
+.servi-card__name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1c1c;
+}
+
+.servi-card__icon {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border-radius: 0 18px 18px 0;
+  background: linear-gradient(135deg, #edf3ff 0%, #f5f8ff 100%);
+}
+
+.servi-card__emoji {
+  font-size: clamp(32px, 4vw, 46px);
+}
+
+/* Estado seleccionado: sube un poco y va al frente */
+
+.servi-card.is-selected {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+  border-color: rgba(10, 46, 80, 0.22);
+  z-index: 3;
+}
+
+/* =========================
+   Panel deslizante de detalles
+   (solo se muestra en la tarjeta seleccionada)
+   ========================= */
+
+.servi-card__details {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%; /* aparece debajo de la tarjeta */
+  padding: 12px 18px 16px;
+  background: #ffffff;
+  border-radius: 0 0 18px 18px;
+  border: 1px solid rgba(10, 46, 80, 0.12);
+  border-top: none;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  overflow: hidden;
+
+  transition:
+    opacity 220ms ease,
+    max-height 240ms ease,
+    transform 220ms ease;
+}
+
+/* Cuando la tarjeta está seleccionada, el panel “se desliza” */
+.servi-card.is-selected .servi-card__details {
+  opacity: 1;
+  max-height: 260px; /* suficiente para inputs + botón */
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Texto dentro del panel */
+
+.servi-card__msg {
+  margin: 4px 0 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* =========================
+   Formulario (AUTO / MOTO / EMBARCACIONES)
+   ========================= */
+
+.servi-card__form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px 12px;
+  margin-bottom: 4px;
+}
+
+.servi-card__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.servi-card__field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a3c47; /* azul petróleo de la paleta */
+}
+
+.servi-card__field input {
+  width: 100%;
+  box-sizing: border-box;         // <-- para que no se pase del ancho
+  font-size: 12px;
+  padding: 4px 8px;               // un poco más chico
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  background-color: #fff;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+
+.servi-card__field input:focus {
+  border-color: #0a2e50;
+  box-shadow: 0 0 0 1px rgba(10, 46, 80, 0.18);
+  background-color: #f8fbff;
+}
+
+/* =========================
+   Botón "Solicitar tu cotización"
+   ========================= */
+
+.servi-card__btn {
+  align-self: center;
+  margin-top: 4px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  background: #0a2e50;        /* azul fuerte (paleta) */
+  color: #ffffff;
+
+  box-shadow: 0 10px 22px rgba(10, 46, 80, 0.35);
+  transition:
+    transform 120ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.servi-card__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(10, 46, 80, 0.45);
+  background: #0c3964;
+}
+
+.servi-card__btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(10, 46, 80, 0.35);
+}
+
+/* Un poco más de aire abajo para que las tarjetas
+   expandidas no choquen con lo que sigue */
+.servi {
+  padding-bottom: 88px;
+}

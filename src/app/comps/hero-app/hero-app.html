@@ -1,0 +1,24 @@
+<section class="hero-app">
+  <div class="hero-app__wrap">
+    <div class="hero-app__copy">
+      <h1 class="hero-app__title">{{ title }}</h1>
+
+      <ul class="hero-app__list">
+        <li *ngFor="let b of bullets">{{ b }}</li>
+      </ul>
+
+      <div class="hero-app__stores">
+        <!-- botones, etc -->
+      </div>
+    </div>
+
+<figure class="hero-app__phone">
+  <img
+    [src]="phoneImg"
+    [alt]="phoneAlt"
+    [class.is-hidden]="isHidden"
+  />
+</figure>
+
+  </div>
+</section>

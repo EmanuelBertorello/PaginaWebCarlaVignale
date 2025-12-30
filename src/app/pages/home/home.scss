@@ -1,0 +1,202 @@
+/* ===== Paleta Carla Vignale ===== */
+$negro:        #000000;
+$gris-oscuro:  #333133;
+$plata-calida: #bdc3cf;
+$azul-noche:   #0a2e50;
+$blanco-roto:  #f5f5dc;
+
+/* ===== HERO ===== */
+.hero {
+  padding: clamp(48px, 8vw, 112px) 16px;
+  background: linear-gradient(
+    180deg,
+    lighten($azul-noche, 60%) 0%,
+    #ffffff 60%,
+    $blanco-roto 100%
+  );
+  text-align: center;
+
+  &__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: clamp(28px, 4.2vw, 54px);
+    font-weight: 800;
+    margin: 0 0 12px;
+    color: $azul-noche;
+  }
+
+  &__subtitle {
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: lighten($gris-oscuro, 30%);
+    margin: 0 0 20px;
+  }
+
+  &__actions {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: $azul-noche;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: filter .15s ease, background .15s ease;
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $azul-noche;
+    border-color: $azul-noche;
+
+    &:hover {
+      background: rgba($azul-noche, .06);
+    }
+  }
+}
+
+/* ===== FEATURES ===== */
+.features {
+  padding: 36px 16px 64px;
+
+  &__grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+/* Card pequeña */
+.card {
+  border: 1px solid lighten($plata-calida, 18%);
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
+
+  &__title {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: $azul-noche;
+  }
+
+  &__text {
+    margin: 0 0 12px;
+    color: lighten($gris-oscuro, 28%);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $azul-noche;
+    font-weight: 600;
+  }
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+  padding: clamp(48px, 6vw, 80px) 0;
+  background: #ffffff;
+
+  &__wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__title {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4.2vw, 48px);
+    font-weight: 800;
+    color: $azul-noche;
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitle {
+    margin: 0 24px 24px 0;
+    font-size: clamp(16px, 2vw, 22px);
+    color: lighten($gris-oscuro, 20%);
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+  }
+}
+
+/* Product card */
+.product-card {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr; /* texto | icono */
+  align-items: center;
+  min-height: 92px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid lighten($plata-calida, 20%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .10);
+  }
+
+  &__label {
+    padding: 18px 22px;
+    font-weight: 700;
+    color: $gris-oscuro;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      lighten($plata-calida, 32%) 0%,
+      lighten($plata-calida, 40%) 100%
+    );
+    border-left: 1px solid lighten($plata-calida, 18%);
+
+    img {
+      width: clamp(64px, 7vw, 110px);
+      height: auto;
+      filter: contrast(0.92) saturate(0.95);
+      display: block;
+    }
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .products__grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .products__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    grid-template-columns: 1fr 0.9fr;
+  }
+}

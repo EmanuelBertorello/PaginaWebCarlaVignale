@@ -1,0 +1,183 @@
+/* Paleta Carla Vignale (mismas que usamos en el navbar) */
+$negro:        #000000;
+$gris-oscuro:  #333133;
+$plata-calida: #bdc3cf;
+$azul-noche:   #0a2e50;
+$blanco-roto:  #f5f5dc;
+
+/* Gradiente principal adaptado a la paleta */
+.hero-app {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(40px, 6vw, 72px) 0;
+  background: linear-gradient(
+    120deg,
+    $azul-noche 0%,
+    $gris-oscuro 50%,
+    $plata-calida 100%
+  );
+  color: $blanco-roto;
+}
+
+/* Barras decorativas usando tonos claros de la paleta */
+.stripe {
+  position: absolute;
+  height: clamp(28px, 5vw, 48px);
+  background: rgba($blanco-roto, 0.08);
+  border-radius: 6px;
+  pointer-events: none;
+
+  &--1 {
+    top: 18%;
+    left: 48%;
+    width: 24%;
+  }
+  &--2 {
+    top: 44%;
+    right: 4%;
+    width: 32%;
+    background: rgba($plata-calida, 0.25);
+  }
+  &--3 {
+    bottom: 10%;
+    left: 55%;
+    width: 20%;
+  }
+}
+
+.hero-app__wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* texto | celular */
+  align-items: center;
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.hero-app__title {
+  margin: 0 0 16px;
+  font-weight: 800;
+  font-size: clamp(26px, 4.2vw, 44px);
+  letter-spacing: -0.02em;
+  color: $blanco-roto;
+}
+
+.hero-app__list {
+  margin: 0 0 22px;
+  padding-left: 1.2em;
+
+  li {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: $blanco-roto;
+  }
+}
+
+/* Botones tipo badges adaptados a paleta */
+.hero-app__stores {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.store {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba($blanco-roto, 0.12);
+  border: 1px solid rgba($blanco-roto, 0.35);
+  backdrop-filter: blur(3px);
+  color: $blanco-roto;
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    display: block;
+  }
+
+  span {
+    opacity: 0.9;
+    font-size: 12px;
+  }
+
+  strong {
+    font-size: 14px;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    background: rgba($blanco-roto, 0.22);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  }
+}
+
+/* Mockup del celular: mantiene sombra pero sobre el nuevo fondo */
+/* Mockup del celular: mantiene sombra pero con borde redondeado */
+/* Mockup del celular: tamaño fijo, bordes y fade suave */
+.hero-app__phone {
+  margin: 0;
+  text-align: right;
+
+  img {
+    display: inline-block;
+
+    /* 🔹 mismas dimensiones para todas */
+    width: 320px;
+    height: 320px;
+    object-fit: cover;          // recorta sin deformar
+
+    border-radius: 26px;
+    border: 4px solid rgba($blanco-roto, 0.85);
+    background: #ffffff;
+    overflow: hidden;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+
+    /* 🔹 transición suave de opacidad */
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+
+  img.is-hidden {
+    opacity: 0;                 // fade-out / fade-in
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-app__phone {
+    text-align: center;
+
+    img {
+      width: 260px;
+      height: 260px;
+    }
+  }
+}
+
+
+
+/* Responsive */
+@media (max-width: 980px) {
+  .hero-app__wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-app__phone {
+    text-align: center;
+  }
+
+  .stripe--1,
+  .stripe--2,
+  .stripe--3 {
+    opacity: 0.4;
+  }
+}

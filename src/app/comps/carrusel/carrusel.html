@@ -1,0 +1,45 @@
+<section class="carousel">
+  <h2 class="carousel__title">{{ title }}</h2>
+
+  <div class="carousel__viewport">
+    <button class="nav nav--prev" (click)="prev()" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+        <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="carousel__track" [style.--i]="index">
+      <article class="slide"
+               *ngFor="let p of providers; index as i; trackBy: trackByName"
+               [class.is-active]="i === index">
+
+        <div class="slide__media">
+          <img class="slide__logo"
+               [src]="p.logo"
+               [alt]="p.name"
+               loading="lazy"
+               (error)="onImgError($event)">
+        </div>
+
+        <div class="slide__overlay">
+          <h3 class="slide__title">{{ p.name }}</h3>
+          <p class="slide__subtitle">Protección ante cualquier accidente</p>
+        </div>
+      </article>
+    </div>
+
+    <button class="nav nav--next" (click)="next()" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+        <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="carousel__dots">
+    <button class="dot"
+            *ngFor="let _ of providers; index as i"
+            [class.is-active]="i===index"
+            (click)="go(i)"
+            aria-label="Ir a la tarjeta {{ i + 1 }}"></button>
+  </div>
+</section>

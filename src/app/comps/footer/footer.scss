@@ -1,0 +1,127 @@
+.footer {
+  /* Paleta y base */
+  --bg-a: #163a67;
+  --bg-b: #1a5da0;
+  --text: #eaf2fb;
+  --muted: #cfe0f3;
+  --accent: #ffffff;
+
+  background: linear-gradient(90deg, var(--bg-a) 0%, var(--bg-b) 100%);
+  color: var(--text);
+  font: 14px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Un poco más alto: +padding */
+  .footer__wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 26px clamp(16px, 4vw, 36px); /* <- antes ~18px */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  /* IZQUIERDA */
+  .footer__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .ig {
+    --size: 42px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: rgba(255,255,255,.12);
+    box-shadow:
+      0 10px 22px rgba(0,0,0,.25),
+      inset 0 1px 0 rgba(255,255,255,.2);
+    transition: transform .15s ease, background .15s ease, box-shadow .2s ease;
+
+    svg { width: 22px; height: 22px; display: block; }
+    &:hover { transform: translateY(-1px); background: rgba(255,255,255,.18); }
+    &:active { transform: translateY(0); }
+  }
+
+  .footer__text { display: grid; gap: 2px; }
+
+  .footer__brand {
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: .2px;
+    strong { font-weight: 700; }
+  }
+
+  .footer__line { margin: 0; color: var(--muted); }
+
+  /* Teléfono con otra tipografía (Poppins) */
+  .footer__phone { white-space: nowrap; }
+  .footer__tel {
+    font-family: "Poppins", "Montserrat", "Segoe UI", Roboto, Arial, sans-serif; /* <- distinta */
+    font-weight: 600;
+    font-size: 15px; /* un poco más grande */
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255,255,255,.6);
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .footer__tel:hover { border-bottom-style: solid; }
+
+  /* DERECHA: botón */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;          /* un toque más alto */
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: .4px;
+    white-space: nowrap;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+
+    svg { width: 18px; height: 18px; }
+  }
+
+  .btn--contact {
+    background: #fff;
+    color: #21364d;
+    box-shadow: 0 14px 30px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.45);
+
+    &:hover { transform: translateY(-1px); box-shadow: 0 18px 36px rgba(0,0,0,.28); }
+    &:active { transform: translateY(0); }
+  }
+
+  /* Franja inferior (crédito) */
+  .footer__bottom {
+    border-top: 1px solid rgba(255,255,255,.12);
+    background: linear-gradient(90deg, rgba(0,0,0,.03), rgba(255,255,255,.04));
+  }
+  .footer__wrap--bottom {
+    padding-top: 10px;
+    padding-bottom: 18px;
+    justify-content: flex-start;
+  }
+  .credit {
+    margin: 0;
+    font-size: 12.5px;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 760px) {
+    .footer__wrap {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .btn--contact { align-self: flex-start; }
+    .ig { --size: 38px; }
+  }
+}
