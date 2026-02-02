@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Cv } from './comps/cv/cv';
+import { Cv } from '../../comps/cv/cv';
 
 import { HeroApp } from '../../comps/hero-app/hero-app';
 import { Carrusel, Provider } from '../../comps/carrusel/carrusel';

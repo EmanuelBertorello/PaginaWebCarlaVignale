@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import {
   NgFor,
-  NgClass,
   NgSwitch,
   NgSwitchCase,
   NgSwitchDefault,
@@ -34,7 +33,6 @@ interface ServiItem {
   standalone: true,
   imports: [
     NgFor,
-    NgClass,
     NgSwitch,
     NgSwitchCase,
     NgSwitchDefault,
@@ -45,18 +43,18 @@ interface ServiItem {
 })
 export class Servi {
   services: ServiItem[] = [
-    { id: 'auto',           name: 'Automotor',             emoji: '🚗' },
-    { id: 'moto',           name: 'Moto',                  emoji: '🏍️' },
-    { id: 'embarcaciones',  name: 'Embarcaciones',         emoji: '🚤' },
-    { id: 'hogar',          name: 'Hogar',                 emoji: '🏠' },
-    { id: 'incendio',       name: 'Incendio',              emoji: '🔥' },
-    { id: 'caucion',        name: 'Caución',               emoji: '🏢' },
-    { id: 'accidentes',     name: 'Accidentes Personales', emoji: '🩺' },
-    { id: 'vida',           name: 'Vida',                  emoji: '❤️' },
-    { id: 'mala-praxis',    name: 'Mala Praxis',           emoji: '⚕️' },
-    { id: 'mascota',        name: 'Mascota',               emoji: '🐾' },
-    { id: 'viajes',         name: 'Viajes',                emoji: '✈️' },
-    { id: 'art',            name: 'ART',                   emoji: '💼' },
+    { id: 'auto',          name: 'Automotor',             emoji: '🚗' },
+    { id: 'moto',          name: 'Moto',                  emoji: '🏍️' },
+    { id: 'embarcaciones', name: 'Embarcaciones',         emoji: '🚤' },
+    { id: 'hogar',         name: 'Hogar',                 emoji: '🏠' },
+    { id: 'incendio',      name: 'Incendio',              emoji: '🔥' },
+    { id: 'caucion',       name: 'Caución',               emoji: '🏢' },
+    { id: 'accidentes',    name: 'Accidentes Personales', emoji: '🩺' },
+    { id: 'vida',          name: 'Vida',                  emoji: '❤️' },
+    { id: 'mala-praxis',   name: 'Mala Praxis',           emoji: '⚕️' },
+    { id: 'mascota',       name: 'Mascota',               emoji: '🐾' },
+    { id: 'viajes',        name: 'Viajes',                emoji: '✈️' },
+    { id: 'art',           name: 'ART',                   emoji: '💼' },
   ];
 
   selectedId: ServiId | null = null;

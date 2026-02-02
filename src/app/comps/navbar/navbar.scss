@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* ───────── Paleta Carla Vignale ───────── */
 $negro:        #000000;
 $gris-oscuro:  #333133;   // ajustado para que sea hex válido
@@ -7,7 +9,7 @@ $blanco-roto:  #f5f5dc;
 
 /* Derivados */
 $blue-900: $azul-noche;
-$blue-800: lighten($azul-noche, 6%);
+$blue-800: color.adjust($azul-noche, $lightness: 6%);
 $ink-900:  $negro;
 $ink-700:  $gris-oscuro;
 $muted:    $plata-calida;
@@ -46,7 +48,6 @@ $txt:      $negro;
     grid-template-columns: 1fr auto;
     align-items: center;
   }
-
 
   .topbar__links {
     display: flex;

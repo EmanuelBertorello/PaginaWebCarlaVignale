@@ -1,12 +1,12 @@
 import { Component, HostListener } from '@angular/core';
-import { NgFor, NgClass } from '@angular/common';
+import { NgFor, } from '@angular/common';
 
 type NavLink = { label: string; target: string };
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgFor],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })

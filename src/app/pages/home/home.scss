@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* ===== Paleta Carla Vignale ===== */
 $negro:        #000000;
 $gris-oscuro:  #333133;
@@ -10,7 +12,7 @@ $blanco-roto:  #f5f5dc;
   padding: clamp(48px, 8vw, 112px) 16px;
   background: linear-gradient(
     180deg,
-    lighten($azul-noche, 60%) 0%,
+    color.adjust($azul-noche, $lightness: 60%) 0%,
     #ffffff 60%,
     $blanco-roto 100%
   );
@@ -30,7 +32,7 @@ $blanco-roto:  #f5f5dc;
 
   &__subtitle {
     font-size: clamp(16px, 2.2vw, 20px);
-    color: lighten($gris-oscuro, 30%);
+    color: color.adjust($gris-oscuro, $lightness: 30%);
     margin: 0 0 20px;
   }
 
@@ -83,7 +85,7 @@ $blanco-roto:  #f5f5dc;
 
 /* Card pequeña */
 .card {
-  border: 1px solid lighten($plata-calida, 18%);
+  border: 1px solid color.adjust($plata-calida, $lightness: 18%);
   border-radius: 12px;
   padding: 16px;
   background: #fff;
@@ -97,7 +99,7 @@ $blanco-roto:  #f5f5dc;
 
   &__text {
     margin: 0 0 12px;
-    color: lighten($gris-oscuro, 28%);
+    color: color.adjust($gris-oscuro, $lightness: 28%);
   }
 
   &__link {
@@ -129,7 +131,7 @@ $blanco-roto:  #f5f5dc;
   &__subtitle {
     margin: 0 24px 24px 0;
     font-size: clamp(16px, 2vw, 22px);
-    color: lighten($gris-oscuro, 20%);
+    color: color.adjust($gris-oscuro, $lightness: 20%);
     font-weight: 700;
   }
 
@@ -148,7 +150,7 @@ $blanco-roto:  #f5f5dc;
   min-height: 92px;
   border-radius: 16px;
   background: #fff;
-  border: 1px solid lighten($plata-calida, 20%);
+  border: 1px solid color.adjust($plata-calida, $lightness: 20%);
   box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
   text-decoration: none;
   transition: transform .15s ease, box-shadow .2s ease;
@@ -170,10 +172,10 @@ $blanco-roto:  #f5f5dc;
     height: 100%;
     background: linear-gradient(
       90deg,
-      lighten($plata-calida, 32%) 0%,
-      lighten($plata-calida, 40%) 100%
+      color.adjust($plata-calida, $lightness: 32%) 0%,
+      color.adjust($plata-calida, $lightness: 40%) 100%
     );
-    border-left: 1px solid lighten($plata-calida, 18%);
+    border-left: 1px solid color.adjust($plata-calida, $lightness: 18%);
 
     img {
       width: clamp(64px, 7vw, 110px);
