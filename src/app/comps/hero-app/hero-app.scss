@@ -19,6 +19,7 @@ $blanco-roto:  #f5f5dc;
   color: $blanco-roto;
 }
 
+
 /* Barras decorativas usando tonos claros de la paleta */
 .stripe {
   position: absolute;
@@ -58,7 +59,7 @@ $blanco-roto:  #f5f5dc;
 
 .hero-app__title {
   margin: 0 0 16px;
-  font-weight: 800;
+  font-weight: bolder;
   font-size: clamp(26px, 4.2vw, 44px);
   letter-spacing: -0.02em;
   color: $blanco-roto;

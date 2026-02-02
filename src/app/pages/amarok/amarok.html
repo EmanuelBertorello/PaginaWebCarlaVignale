@@ -1,0 +1,149 @@
+<section class="qt">
+  <!-- Header -->
+  <div class="qt__header">
+    <div class="qt__hcell qt__hcell--insurer">
+      Aseguradora<br />
+      y Tipo de Cobertura
+    </div>
+
+    <div class="qt__hcell qt__hcell--price">
+      Precio promedio<br />
+      mensual
+    </div>
+
+    <ng-container *ngFor="let c of cols">
+      <div class="qt__hcell qt__hcell--cov">
+        <span class="qt__hlabel">{{ c.label }}</span>
+        <span class="qt__info" *ngIf="c.info" title="Más info" aria-label="Más info">i</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Rows -->
+  <div class="qt__rows">
+    <article class="qt__row" *ngFor="let r of rows; trackBy: trackByRow">
+      <!-- Insurer -->
+      <div class="qt__cell qt__cell--insurer">
+        <div class="qt__logo" aria-hidden="true">
+          <span>{{ r.logoText }}</span>
+        </div>
+
+        <div class="qt__insurerMeta">
+          <div class="qt__plan">{{ r.planName }}</div>
+          <div class="qt__rating">{{ r.ratingLabel }}</div>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="qt__cell qt__cell--price">
+        <div class="qt__price">
+          <span class="qt__currency">$</span>{{ formatARS(r.price) }}
+        </div>
+
+        <div class="qt__subprice">
+          <span class="qt__old">$ {{ formatARS(r.oldPrice) }}</span>
+          <span class="qt__badge">-{{ r.discountPct }}%</span>
+        </div>
+      </div>
+
+      <!-- Coverages -->
+      <ng-container *ngFor="let c of cols">
+        <div class="qt__cell qt__cell--cov">
+          <span class="qt__mark" [class.is-ok]="r.coverages[c.key]" [class.is-no]="!r.coverages[c.key]">
+            <ng-container *ngIf="r.coverages[c.key]; else noMark">✓</ng-container>
+            <ng-template #noMark>✕</ng-template>
+          </span>
+        </div>
+      </ng-container>
+    </article>
+  </div>
+</section>
+<section class="factors" aria-labelledby="factorsTitle">
+  <div class="factors__wrap">
+    <!-- Izquierda: texto -->
+    <div class="factors__content">
+      <h2 id="factorsTitle" class="factors__title">
+        ¿Qué factores influyen en el precio del seguro para el VOLKSWAGEN AMAROK?
+      </h2>
+
+      <div class="factors__text">
+        <p>
+          Tenemos datos e información interesante para vos sobre cotizar seguros de autos para VOLKSWAGEN AMAROK en
+          Argentina. El primer dato para vos es sobre los precios, desde lo más barato hasta lo más caro.
+          El lema de Comparaencasa es democratizar la industria de seguros para autos online. Esta información detallada
+          que preparamos para vos está destinada a ser una ayuda para elegir seguros de autos para VOLKSWAGEN AMAROK.
+          Hay 3 factores principales detrás del precio de los seguros de autos para VOLKSWAGEN AMAROK.
+        </p>
+
+        <ol>
+          <li><strong>El precio del auto</strong></li>
+          <li><strong>Dónde se radica el auto</strong></li>
+          <li><strong>Tipo de cobertura (todo riesgo, terceros completo, etc.)</strong></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Derecha: “tabla” de rangos -->
+    <aside class="factors__panel" aria-label="Rangos de precios y coberturas">
+      <div class="factors__legend">
+        <div class="factors__legendItem">
+          <span class="factors__swatch is-outline" aria-hidden="true"></span>
+          <span>Precio del auto</span>
+        </div>
+
+        <div class="factors__legendItem">
+          <span class="factors__swatch is-min" aria-hidden="true"></span>
+          <span>Cobertura mínima</span>
+        </div>
+
+        <div class="factors__legendItem">
+          <span class="factors__swatch is-max" aria-hidden="true"></span>
+          <span>Cobertura máxima</span>
+        </div>
+      </div>
+
+      <div class="factors__list">
+        <div class="factors__row" *ngFor="let it of priceBands; trackBy: trackByBand">
+          <div class="factors__left">
+            <span class="factors__icon" aria-hidden="true">
+              <!-- auto icon simple -->
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path
+                  fill="currentColor"
+                  d="M5 11l1.5-4.5A3 3 0 0 1 9.35 4h5.3a3 3 0 0 1 2.85 2.5L19 11h1a2 2 0 0 1 2 2v3h-2a2 2 0 1 1-4 0H8a2 2 0 1 1-4 0H2v-3a2 2 0 0 1 2-2h1zm2.1-4.1L6.1 11h11.8l-1-4.1A1.5 1.5 0 0 0 14.65 6h-5.3A1.5 1.5 0 0 0 7.1 6.9z"
+                />
+              </svg>
+            </span>
+            <span class="factors__label">{{ it.label }}</span>
+          </div>
+
+          <div class="factors__card">
+            <div class="factors__bar">
+              <div class="factors__seg is-min" [style.width.%]="it.minW">
+                <span class="factors__value">$ {{ it.min }}</span>
+              </div>
+              <div class="factors__seg is-max" [style.width.%]="it.maxW">
+                <span class="factors__value">$ {{ it.max }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="factors__footer">
+    <p>
+      Ahora que aprendimos de la información anterior, podemos comenzar a entender cuánto deberíamos gastar por seguros
+      de autos para VOLKSWAGEN AMAROK. Esa es la información inicial para ayudarnos a elegir cuánto podemos gastar en el
+      seguro, si es cobertura básica o total. Además, también podemos estimar cuánto es el presupuesto para un auto de
+      mayor categoría.
+    </p>
+
+    <p>
+      Para ayudarte a elegir el mejor seguro, es útil tener más información. No te preocupes, Comparaencasa ha preparado
+      toda la información necesaria antes de elegir el seguro de autos para VOLKSWAGEN AMAROK en Argentina online.
+      Vení, vayamos a las próximas secciones.
+    </p>
+  </div>
+</section>

@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  NgZone,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -9,6 +16,8 @@ import { NgFor } from '@angular/common';
   styleUrl: './hero-app.scss',
 })
 export class HeroApp implements OnInit, OnDestroy {
+  constructor(private zone: NgZone, private cdr: ChangeDetectorRef) {}
+
   @Input() title = 'Tus seguros en buenas Manos';
   @Input() bullets: string[] = [
     'Solicitá tus polizas y cerficados ',
@@ -16,15 +25,14 @@ export class HeroApp implements OnInit, OnDestroy {
     'Ayuda en el momento del siniestro',
     'Asistencia Mecánica Via whatsapp',
     'Respaldo y asesoramiento Juridico',
-  
-  
   ];
 
   @Input() playHref = '#';
-  @Input() appHref  = '#';
+  @Input() appHref = '#';
 
-  @Input() phoneImg = 'assets/img/aut.jpg';
   @Input() phoneAlt = 'App en el celular';
+
+  phoneImg = 'assets/img/aut.jpg';
 
   private readonly imageSequence = [
     'assets/img/aut.jpg',
@@ -33,30 +41,57 @@ export class HeroApp implements OnInit, OnDestroy {
   ];
 
   private currentIndex = 0;
-  private intervalId: any;
+  private intervalId: ReturnType<typeof setInterval> | null = null;
+  private fadeTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  // para el fade
+  // fade
   isHidden = false;
 
   ngOnInit(): void {
     this.phoneImg = this.imageSequence[0];
+    this.cdr.detectChanges(); // pinta inicial
 
-    this.intervalId = setInterval(() => {
-      // 1) fade out
-      this.isHidden = true;
+    // correr interval fuera de Angular (performance) PERO volver a Angular al actualizar
+    this.zone.runOutsideAngular(() => {
+      this.intervalId = setInterval(() => {
+        // si la pestaña está oculta, no animamos (evita bugs)
+        if (document.hidden) return;
 
-      // 2) cuando termina el fade-out, cambio la imagen y hago fade-in
-      setTimeout(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.imageSequence.length;
-        this.phoneImg = this.imageSequence[this.currentIndex];
-        this.isHidden = false;
-      }, 400); // mismo tiempo que el transition del SCSS
-    }, 3000); // cada 3 segundos
+        // entramos a Angular SOLO para actualizar estado + CD
+        this.zone.run(() => {
+          // fade out
+          this.isHidden = true;
+          this.cdr.detectChanges();
+
+          // cambio de imagen al terminar el fade
+          if (this.fadeTimeoutId) clearTimeout(this.fadeTimeoutId);
+          this.fadeTimeoutId = setTimeout(() => {
+            this.currentIndex = (this.currentIndex + 1) % this.imageSequence.length;
+            this.phoneImg = this.imageSequence[this.currentIndex];
+            this.isHidden = false;
+
+            // ✅ fuerza render inmediato sin necesitar scroll/mouse
+            this.cdr.detectChanges();
+          }, 400);
+        });
+      }, 3000);
+    });
+
+    // cuando vuelve a foco, forzamos un repaint
+    document.addEventListener('visibilitychange', this.onVisibility);
+    window.addEventListener('focus', this.onVisibility);
   }
 
   ngOnDestroy(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    if (this.intervalId) clearInterval(this.intervalId);
+    if (this.fadeTimeoutId) clearTimeout(this.fadeTimeoutId);
+
+    document.removeEventListener('visibilitychange', this.onVisibility);
+    window.removeEventListener('focus', this.onVisibility);
   }
+
+  private onVisibility = () => {
+    // cuando el usuario vuelve, aseguramos que se actualice la UI
+    this.zone.run(() => this.cdr.detectChanges());
+  };
 }

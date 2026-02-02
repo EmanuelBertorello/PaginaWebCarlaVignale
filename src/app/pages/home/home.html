@@ -1,30 +1,20 @@
-<app-hero-app ></app-hero-app>
+<app-hero-app></app-hero-app>
 
-<!-- PRODUCTS GRID CON ICONOS REMOTOS -->
-<section class="products" id="productos">
-  <div class="products__wrap">
-    <h2 class="products__title">Conocé más de nuestros productos</h2>
-    <p class="products__subtitle">Seguros para personas y profesionales</p>
+<app-servi></app-servi>
+<app-docs-needed></app-docs-needed>
 
-    <div class="products__grid">
-      <a
-        class="product-card"
-        *ngFor="let p of products"
-        [routerLink]="p.link || '/'"
-        aria-label="{{ p.name }}"
-      >
-        <div class="product-card__label">{{ p.name }}</div>
-        <div class="product-card__icon">
-          <img [src]="p.icon" [alt]="p.name" loading="lazy" referrerpolicy="no-referrer" />
-        </div>
-      </a>
-    </div>
-  </div>
+<section id="info">
+  <app-info></app-info>
 </section>
-<!-- tu hero y productos... -->
 
-<app-carrusel
-  [title]="'Nuestros proveedores'"
-  [providers]="providers">
-</app-carrusel>
+<app-stats-strip></app-stats-strip>
 
+
+
+<app-carrusel [title]="'Nuestros proveedores'" [providers]="providers"></app-carrusel>
+
+<app-cv></app-cv>
+
+
+
+<app-wa-fab></app-wa-fab>

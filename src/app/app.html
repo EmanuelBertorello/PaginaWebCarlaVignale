@@ -1,36 +1,9 @@
 <app-navbar></app-navbar>
 
 <main>
-  <!-- ANCLA PARA "Inicio" -->
-  <div id="top"></div>
-
-  <!-- HERO PRINCIPAL -->
-  <app-hero-app></app-hero-app>
-
-
-  <app-servi></app-servi>
-  <app-docs-needed></app-docs-needed>
-  <!-- SOBRE NOSOTROS (INFO) -->
-  <section id="info">
-    <app-info></app-info>
-  </section>
-
-  <!-- BANNER STATS (+400 CLIENTES...) QUE HABÍAMOS AGREGADO -->
-  <!-- si tu componente tiene otro selector, cambialo acá -->
-  <app-stats-strip></app-stats-strip>
-
-  <!-- PRODUCTS GRID CON ICONOS (esto era tu sección de productos) -->
-
-
-  <!-- CARRUSEL DE ASEGURADORAS -->
-  <app-carrusel
-    [title]="'Nuestros proveedores'"
-    [providers]="providers">
-  </app-carrusel>
+  <router-outlet></router-outlet>
 </main>
-<app-cv></app-cv>
 
-<!-- CONTACTO / FOOTER -->
 <footer id="contacto">
   <app-footer></app-footer>
 </footer>

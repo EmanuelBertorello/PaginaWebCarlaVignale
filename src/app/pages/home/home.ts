@@ -1,51 +1,77 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NgFor } from '@angular/common';
-import { Cv } from '../../comps/cv/cv';
 
 import { HeroApp } from '../../comps/hero-app/hero-app';
-import { Carrusel, Provider } from '../../comps/carrusel/carrusel';
+import { Servi } from '../../comps/servi/servi';
+import { DocsNeeded } from '../../comps/docs-needed/docs-needed';
+import { Info } from '../../comps/info/info';
+import { StatsStrip } from '../../comps/stats-strip/stats-strip';
+import { Carrusel } from '../../comps/carrusel/carrusel';
+import { Cv } from '../../comps/cv/cv';
+import { WaFab } from '../../comps/wa-fab/wa-fab';
 
-type Product = { name: string; icon: string; link?: string };
+type Provider = { name: string; subtitle: string; logo: string };
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NgFor, HeroApp, Carrusel],
+  imports: [
+    HeroApp,
+    Servi,
+    DocsNeeded,
+    Info,
+    StatsStrip,
+    Carrusel,
+    Cv,WaFab
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
-  bullets: string[] = [
-    'Localizá tu asesor',
-    'Pagá tus pólizas por MercadoPago',
-    'Creá tus denuncias de siniestro por sistema de voz',
-    'Solicitá asistencia Mecánica con geolocalización',
-    'Descargá tus pólizas y certificados de cobertura',
-  ];
-
-  products: Product[] = [
-    { name: 'Automotor', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/car.svg', link: '/seguros/automotor' },
-    { name: 'Moto', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/motorbike.svg', link: '/seguros/moto' },
-    { name: 'Embarcaciones', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/ship.svg', link: '/seguros/embarcaciones' },
-    { name: 'Hogar', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/home.svg', link: '/seguros/hogar' },
-    { name: 'Incendio', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/flame.svg', link: '/seguros/incendio' },
-    { name: 'Causion', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/home-dollar.svg', link: '/seguros/alquiler-garantizado' },
-    { name: 'Accidentes Personales', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/first-aid-kit.svg', link: '/seguros/accidentes-personales' },
-    { name: 'Vida', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/heart.svg', link: '/seguros/vida' },
-    { name: 'Mala Praxis', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/stethoscope.svg', link: '/seguros/mala-praxis' },
-    { name: 'Mascota', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/paw.svg', link: '/seguros/mascota' },
-    { name: 'Viajes', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/plane.svg', link: '/seguros/viajes' },
-    { name: 'ART', icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.47.0/icons/briefcase.svg', link: '/seguros/art' },
-  ];
-
-  // Logos (podés pasar a assets locales cuando quieras)
   providers: Provider[] = [
-    { name: 'Sancor Seguros',       logo: 'https://logo.clearbit.com/sancorseguros.com.ar' },
-    { name: 'San Cristóbal',        logo: 'https://logo.clearbit.com/sancristobal.com.ar' },
-    { name: 'Federación Patronal', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Logo_FederacionPatronal.png' },
-    { name: 'Galeno',               logo: 'https://logo.clearbit.com/galeno.com.ar' },
-    { name: 'Río Uruguay Seguros',  logo: 'https://logo.clearbit.com/riouruguay.com.ar' },
-   
+    {
+      name: 'Galeno Seguros',
+      subtitle: 'Coberturas integrales para salud, vida y patrimonio',
+      logo: 'https://seguru.com.ar/wp-content/uploads/2022/05/galeno1.svg',
+    },
+    {
+      name: 'Río Uruguay Seguros (RUS)',
+      subtitle: 'Cooperativa líder en seguros generales',
+      logo: 'https://images.seeklogo.com/logo-png/29/1/rio-uruguay-seguros-logo-png_seeklogo-296139.png',
+    },
+    {
+      name: 'Sancor Seguros',
+      subtitle: 'Respaldando personas y empresas en todo el país',
+      logo: 'https://images.seeklogo.com/logo-png/15/1/sancor-seguros-logo-png_seeklogo-157838.png',
+    },
+    {
+      name: 'La Caja de Ahorro y Seguro',
+      subtitle: 'Seguros para autos, hogar y vida',
+      logo: 'https://www.issys.gov.ar/wp-content/uploads/2023/07/images-2.png',
+    },
+    {
+      name: 'Zurich Seguros',
+      subtitle: 'Soluciones globales con presencia local',
+      logo: 'https://images.seeklogo.com/logo-png/15/1/zurich-logo-png_seeklogo-156664.png',
+    },
+    {
+      name: 'Allianz Argentina',
+      subtitle: 'Coberturas corporativas y personales',
+      logo: 'https://images.seeklogo.com/logo-png/48/1/allianz-logo-png_seeklogo-485293.png',
+    },
+    {
+      name: 'Berkley',
+      subtitle: 'Coberturas corporativas y personales',
+      logo: 'https://www.cspseguros.com.ar/wp-content/uploads/2019/08/Berkley.png',
+    },
+    {
+      name: 'Experta ART',
+      subtitle: 'Coberturas corporativas y personales',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNwbuZBVZJsnIfldnPkE8KWNkSuEkW9ywVlg&s',
+    },
+    {
+      name: 'Swiss Medical',
+      subtitle: 'Coberturas corporativas y personales',
+      logo: 'https://www.miobrasocial.com.ar/wp-content/uploads/2025/01/swiss-medical-logo-2025.png',
+    },
   ];
 }

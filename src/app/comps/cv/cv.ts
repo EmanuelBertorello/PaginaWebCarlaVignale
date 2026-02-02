@@ -10,5 +10,14 @@ import { Component } from '@angular/core';
 })
 export class Cv {
   // Imagen libre asociada a seguros
-  imgUrl = 'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=1200';
+  imgUrl =
+    'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=1200';
+
+  // WhatsApp (MISMO formato que WaFab)
+  readonly phone = '5493416055454';
+  readonly text = 'Hola Carla, ¿qué tal? Te adjunto mi CV!';
+
+  get waHref(): string {
+    return `https://wa.me/${this.phone}?text=${encodeURIComponent(this.text)}`;
+  }
 }

@@ -4,7 +4,6 @@
   position: relative;
   overflow: hidden;
 
-  /* patrón gris claro similar al de la captura */
   background-image:
     radial-gradient(circle at 0 0, rgba(255, 255, 255, .6) 1px, transparent 1px),
     radial-gradient(circle at 100% 100%, rgba(255, 255, 255, .6) 1px, transparent 1px);
@@ -19,7 +18,6 @@
   &__card {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 0;
     border-radius: 28px;
     background: #ffffff;
     box-shadow: 0 16px 40px rgba(0, 0, 0, .15);
@@ -59,29 +57,45 @@
     color: var(--c-steel);
   }
 
+  /* ===============================
+     BOTÓN — SIEMPRE COMO HOVER
+     =============================== */
   &__btn {
     align-self: flex-start;
     padding: 10px 22px;
     border-radius: 999px;
-    border: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
     cursor: pointer;
+
     font-weight: 700;
     font-size: 14px;
     letter-spacing: .02em;
-    background: var(--c-petrol);
-    color: #fff;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
-    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+
+    /* 🔥 estado hover permanente */
+    background-color: #215061;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, .22);
+
+    transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
 
     &:hover {
-      background: #215061; /* un poco más claro que --c-petrol */
-      transform: translateY(-1px);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, .22);
+      background-color: #1c4452;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .26);
     }
 
     &:active {
       transform: translateY(0);
       box-shadow: 0 6px 16px rgba(0, 0, 0, .16);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba(10, 46, 80, 0.35);
+      outline-offset: 3px;
     }
   }
 
@@ -98,14 +112,16 @@
     }
   }
 
-  /* Responsive */
+  /* ===============================
+     RESPONSIVE
+     =============================== */
   @media (max-width: 900px) {
     &__card {
       grid-template-columns: 1fr;
     }
 
     &__media {
-      order: -1; /* foto arriba en mobile */
+      order: -1;
     }
 
     &__content {
@@ -115,7 +131,6 @@
     &__btn {
       width: 100%;
       text-align: center;
-      justify-content: center;
     }
   }
 }

@@ -3,17 +3,25 @@
     <article class="cv__card">
       <div class="cv__content">
         <p class="cv__eyebrow">Productores de seguros</p>
+
         <h2 class="cv__title">
           Sumate a nuestra red de productores de seguros
         </h2>
+
         <p class="cv__text">
           Formá parte de un equipo especializado en seguros, con el respaldo
           de más de 80 años de experiencia en el mercado.
         </p>
 
-        <button class="cv__btn" type="button">
+        <!-- CTA WhatsApp (mismo comportamiento que WaFab) -->
+        <a
+          class="cv__btn"
+          [href]="waHref"
+          target="_blank"
+          rel="noopener"
+        >
           Sumate a la red
-        </button>
+        </a>
       </div>
 
       <div class="cv__media">
