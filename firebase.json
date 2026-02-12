@@ -1,16 +1,13 @@
 {
   "hosting": {
-    "public": "dist/carlav/browser",
+    "public": "dist/carlav",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+      { "source": "**", "destination": "/index.html" }
     ]
   }
 }
