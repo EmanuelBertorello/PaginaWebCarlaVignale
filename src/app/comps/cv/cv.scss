@@ -57,6 +57,7 @@
     color: var(--c-steel);
   }
 
+<<<<<<< HEAD
   /* ===============================
      BOTÓN — SIEMPRE COMO HOVER
      =============================== */
@@ -68,12 +69,19 @@
     appearance: none;
     -webkit-appearance: none;
     border: 0;
+=======
+    &__btn {
+    align-self: flex-start;
+    padding: 10px 22px;
+    border-radius: 999px;
+>>>>>>> 9ce6e90 (final)
     cursor: pointer;
 
     font-weight: 700;
     font-size: 14px;
     letter-spacing: .02em;
 
+<<<<<<< HEAD
     /* 🔥 estado hover permanente */
     background-color: #215061;
     color: #ffffff;
@@ -86,11 +94,32 @@
       background-color: #1c4452;
       transform: translateY(-2px);
       box-shadow: 0 14px 30px rgba(0, 0, 0, .26);
+=======
+    /* 👉 Estado normal: botón claro, bien visible */
+    background: #ffffff;
+    color: var(--c-petrol);
+    border: 1px solid var(--c-petrol);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .10);
+
+    transition:
+      transform .15s ease,
+      box-shadow .2s ease,
+      background-color .2s ease,
+      color .2s ease,
+      border-color .2s ease;
+
+    &:hover {
+      /* 👉 Hover: invertimos, se llena de color */
+      background: var(--c-petrol);
+      border-color: var(--c-petrol);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, .18);
+>>>>>>> 9ce6e90 (final)
     }
 
     &:active {
       transform: translateY(0);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, .16);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .14);
     }
 
     &:focus-visible {
@@ -98,6 +127,7 @@
       outline-offset: 3px;
     }
   }
+
 
   &__media {
     position: relative;
@@ -133,4 +163,70 @@
       text-align: center;
     }
   }
+  &__form {
+    margin-top: 18px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  &__form--open {
+    max-height: 260px; // altura suficiente para el form
+    opacity: 1;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--c-steel);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    input[type='file'] {
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: #f9fafb;
+      font-size: 13px;
+    }
+  }
+
+  &__btn--secondary {
+    background: var(--c-petrol);
+    color: #fff;
+    border-color: var(--c-petrol);
+
+    &:hover {
+      background: #215061;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: default;
+      transform: none;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &__msg {
+    font-size: 13px;
+    margin: 4px 0 0;
+  }
+
+  &__msg--ok {
+    color: #15803d;
+  }
+
+  &__msg--error {
+    color: #b91c1c;
+  }
+
 }

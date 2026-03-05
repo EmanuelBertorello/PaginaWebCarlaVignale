@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { RouterLink } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { Cv } from '../../comps/cv/cv';
+>>>>>>> 9ce6e90 (final)
 
 import { HeroApp } from '../../comps/hero-app/hero-app';
 import { Servi } from '../../comps/servi/servi';
