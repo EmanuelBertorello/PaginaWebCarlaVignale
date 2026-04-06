@@ -4,24 +4,17 @@
     <div class="cv__card">
       <!-- Texto -->
       <div class="cv__content">
-<<<<<<< HEAD
-        <p class="cv__eyebrow">Productores de seguros</p>
+        <p class="cv__eyebrow">Productores de Seguros</p>
 
         <h2 class="cv__title">
           Sumate a nuestra red de productores de seguros
         </h2>
 
-=======
-        <p class="cv__eyebrow">TRABAJÁ CON NOSOTROS</p>
-        <h2 class="cv__title">¿Querés enviar tu CV a Carla?</h2>
->>>>>>> 9ce6e90 (final)
         <p class="cv__text">
           Adjuntá tu CV en PDF y lo recibiremos directamente por correo para
           tenerte en cuenta en futuras oportunidades.
         </p>
 
-<<<<<<< HEAD
-        <!-- CTA WhatsApp (mismo comportamiento que WaFab) -->
         <a
           class="cv__btn"
           [href]="waHref"
@@ -30,45 +23,6 @@
         >
           Sumate a la red
         </a>
-=======
-        <!-- Botón que abre/cierra el formulario -->
-        <button
-          type="button"
-          class="cv__btn"
-          (click)="toggleForm()"
-        >
-          {{ showForm ? 'Cerrar formulario' : 'Adjuntar mi CV' }}
-        </button>
-
-        <!-- Formulario deslizante -->
-        <div class="cv__form" [class.cv__form--open]="showForm">
-          <form (ngSubmit)="onSubmit()">
-            <label class="cv__label">
-              Adjuntá tu CV en PDF
-              <input
-                type="file"
-                accept="application/pdf"
-                (change)="onFileSelected($event)"
-              />
-            </label>
-
-            <button
-              type="submit"
-              class="cv__btn cv__btn--secondary"
-              [disabled]="sending"
-            >
-              {{ sending ? 'Enviando...' : 'Enviar CV' }}
-            </button>
-
-            <p class="cv__msg cv__msg--ok" *ngIf="successMsg">
-              {{ successMsg }}
-            </p>
-            <p class="cv__msg cv__msg--error" *ngIf="errorMsg">
-              {{ errorMsg }}
-            </p>
-          </form>
-        </div>
->>>>>>> 9ce6e90 (final)
       </div>
 
       <!-- Imagen -->

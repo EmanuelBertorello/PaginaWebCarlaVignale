@@ -1,8 +1,9 @@
 <!-- src/app/comps/servi/servi.html -->
 <section class="servi">
   <div class="servi__wrap">
-    <h2 class="servi__title">Conocé más de nuestros productos</h2>
-    <p class="servi__subtitle">Realizá tu cotización</p>
+    <p class="servi__eyebrow">12 ramos disponibles</p>
+    <h2 class="servi__title">Conocé nuestros productos</h2>
+    <p class="servi__subtitle">Hacé click en la cobertura que necesitás y cotizá en segundos por WhatsApp.</p>
 
     <div class="servi__grid">
       <article
@@ -144,6 +145,15 @@
             (click)="$event.stopPropagation()"
           >
             Solicitar tu cotización
+          </a>
+
+          <a
+            *ngIf="s.route"
+            class="servi-card__more"
+            [routerLink]="s.route"
+            (click)="$event.stopPropagation()"
+          >
+            Ver coberturas →
           </a>
         </div>
       </article>

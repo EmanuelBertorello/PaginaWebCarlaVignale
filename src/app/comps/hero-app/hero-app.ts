@@ -6,12 +6,11 @@ import {
   NgZone,
   ChangeDetectorRef,
 } from '@angular/core';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-hero-app',
   standalone: true,
-  imports: [NgFor],
+  imports: [],
   templateUrl: './hero-app.html',
   styleUrl: './hero-app.scss',
 })

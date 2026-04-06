@@ -1,42 +1,70 @@
-:root{
-  --c-ink:   #1C1C1C;  /* negro carbón */
-  --c-smoke: #E5E5E5;  /* gris humo (líneas/fondos suaves) */
-  --c-steel: #6B6B6B;  /* gris acero (texto secundario) */
-  --c-petrol:#1A3C47;  /* azul petróleo (marca/acento) */
-  --c-ivory: #F7F3EF;  /* marfil/beige */
+/* ── Global overrides (complements styles.scss) ─────────────
+   Este archivo existe para compatibilidad con el build.
+   La fuente de verdad tipográfica y de tokens está en styles.scss
+──────────────────────────────────────────────────────────── */
+
+:root {
+  /* Paleta de componentes legacy (cv, docs-needed) */
+  --c-ink:   #1a1a2e;
+  --c-smoke: #e8edf2;
+  --c-steel: #4a5568;
+  --c-petrol: #003366;
+  --c-ivory: #f0f4f8;
 }
 
-/* Reset básico + fondo global oscuro */
-html,
-body {
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-color: #0a2e50;  /* <- acá matamos el recuadro blanco */
+  background-color: #ffffff;
 }
 
-/* Para evitar que otro estilo default pise el fondo */
 body {
-  background-color: #0a2e50;
+  background-color: #ffffff;
+  overflow-x: hidden;
 }
 
-/* Que el app ocupe todo el alto y el footer quede al final */
 app-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* El contenido principal crece y empuja el footer hacia abajo */
 main {
   flex: 1 0 auto;
   margin: 0;
   padding: 0;
 }
 
-/* El footer se pega al final, sin márgenes extra */
 footer {
   flex-shrink: 0;
-  margin: 0;
-  padding-bottom: 0;
+}
+
+/* ── View Transitions API ──────────────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

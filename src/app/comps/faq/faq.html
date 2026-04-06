@@ -1,0 +1,53 @@
+<!-- Schema.org FAQPage — renderizado por SSR, visible por Googlebot -->
+<section class="faq" id="faq"
+  itemscope
+  itemtype="https://schema.org/FAQPage"
+  aria-labelledby="faq-title">
+
+  <div class="faq__wrap">
+
+    <div class="faq__header">
+      <p class="faq__eyebrow">Todo lo que necesitás saber</p>
+      <h2 class="faq__title" id="faq-title">Preguntas Frecuentes</h2>
+      <p class="faq__sub">
+        Resolvemos tus dudas sobre seguros en Argentina. Si no encontrás tu respuesta,
+        <a href="https://wa.me/5493416055454?text=Tengo%20una%20pregunta%20sobre%20seguros."
+           target="_blank" rel="noopener">escribinos por WhatsApp</a>.
+      </p>
+    </div>
+
+    <div class="faq__list">
+      <div
+        class="faq__item"
+        *ngFor="let item of items; let i = index"
+        [class.faq__item--open]="item.open"
+        itemscope
+        itemtype="https://schema.org/Question">
+
+        <button
+          class="faq__question"
+          type="button"
+          [attr.aria-expanded]="item.open"
+          [attr.aria-controls]="'faq-answer-' + i"
+          (click)="toggle(i)"
+          itemprop="name">
+          <span>{{ item.question }}</span>
+          <svg class="faq__chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div
+          class="faq__answer"
+          [id]="'faq-answer-' + i"
+          [attr.hidden]="item.open ? null : ''"
+          itemscope
+          itemtype="https://schema.org/Answer">
+          <p itemprop="text">{{ item.answer }}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

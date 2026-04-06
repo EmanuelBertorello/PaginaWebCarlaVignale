@@ -1,11 +1,4 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-=======
-import { RouterLink } from '@angular/router';
-import { NgFor } from '@angular/common';
-import { Cv } from '../../comps/cv/cv';
->>>>>>> 9ce6e90 (final)
-
 import { HeroApp } from '../../comps/hero-app/hero-app';
 import { Servi } from '../../comps/servi/servi';
 import { DocsNeeded } from '../../comps/docs-needed/docs-needed';
@@ -13,7 +6,7 @@ import { Info } from '../../comps/info/info';
 import { StatsStrip } from '../../comps/stats-strip/stats-strip';
 import { Carrusel } from '../../comps/carrusel/carrusel';
 import { Cv } from '../../comps/cv/cv';
-import { WaFab } from '../../comps/wa-fab/wa-fab';
+import { Faq } from '../../comps/faq/faq';
 
 type Provider = { name: string; subtitle: string; logo: string };
 
@@ -27,7 +20,8 @@ type Provider = { name: string; subtitle: string; logo: string };
     Info,
     StatsStrip,
     Carrusel,
-    Cv,WaFab
+    Cv,
+    Faq,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
@@ -71,7 +65,7 @@ export class Home {
     },
     {
       name: 'Experta ART',
-      subtitle: 'Coberturas corporativas y personales',
+      subtitle: 'Riesgos del trabajo para empresas y empleados',
       logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNwbuZBVZJsnIfldnPkE8KWNkSuEkW9ywVlg&s',
     },
     {

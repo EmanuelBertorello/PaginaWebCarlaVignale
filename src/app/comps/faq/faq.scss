@@ -1,0 +1,134 @@
+// ── FAQ component ─────────────────────��────────
+$navy:  #003366;
+$blue:  #007BFF;
+$light: #E6F0FF;
+$white: #FFFFFF;
+$text:  #1a1a2e;
+$muted: #4a5568;
+
+.faq {
+  background: $light;
+  padding: clamp(56px, 8vw, 88px) 0;
+}
+
+.faq__wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 28px);
+}
+
+// ── Header ─────────────────────────────────────
+.faq__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.faq__eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $blue;
+}
+
+.faq__title {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  color: $navy;
+  letter-spacing: -0.02em;
+}
+
+.faq__sub {
+  margin: 0;
+  font-size: 15px;
+  color: $muted;
+  line-height: 1.6;
+
+  a {
+    color: $blue;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+    transition: color 0.15s;
+
+    &:hover { color: #0056cc; }
+  }
+}
+
+// ── List ───────────────────────────────────────
+.faq__list {
+  display: grid;
+  gap: 10px;
+}
+
+// ── Item ───────────────────────────────────────
+.faq__item {
+  background: $white;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 51, 102, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 51, 102, 0.05);
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+
+  &--open {
+    border-color: rgba(0, 123, 255, 0.25);
+    box-shadow: 0 4px 16px rgba(0, 51, 102, 0.1);
+  }
+}
+
+// ── Question button ────────────────────────────
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  color: $text;
+  line-height: 1.4;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: rgba(0, 51, 102, 0.025);
+    color: $navy;
+  }
+
+  .faq__item--open & { color: $navy; }
+}
+
+.faq__chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: $muted;
+  transition: transform 0.25s ease, color 0.15s;
+
+  .faq__item--open & {
+    transform: rotate(180deg);
+    color: $blue;
+  }
+}
+
+// ── Answer ─────────────────────────────────────
+.faq__answer {
+  padding: 0 22px 18px;
+
+  &[hidden] { display: none; }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: $muted;
+    line-height: 1.7;
+    border-top: 1px solid rgba(0, 51, 102, 0.07);
+    padding-top: 12px;
+  }
+}

@@ -1,61 +1,126 @@
+// ── Info / Sobre Nosotros ──────────────────────
+$navy:   #003366;
+$blue:   #007BFF;
+$bg:     #F0F4F8;
+$white:  #FFFFFF;
+$text:   #1a1a2e;
+$soft:   #4a5568;
+
 .info-wrapper {
   width: 100%;
-  padding: 60px 0;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #0d1c3d;
-    margin-bottom: 40px;
-  }
+  padding: clamp(64px, 9vw, 104px) 0;
+  background: $bg;
+  border-left: 4px solid $blue;
 }
 
 .info-content {
-  width: 80%;
-  max-width: 1250px;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 28px);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+  gap: clamp(40px, 6vw, 80px);
+}
+
+// ── Columna de texto ───────────────────────────
+.text {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+  flex-direction: column;
+  gap: 18px;
 
-  .text {
-    flex: 1.1;
-    font-size: 17px;
-    line-height: 1.7;
-    color: #333;
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: $navy;
+    letter-spacing: -0.025em;
+    margin: 0 0 4px;
   }
 
-  .text p {
-    margin-bottom: 20px;
-  }
+  p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: $soft;
+    margin: 0;
 
-  .image {
-    flex: 0.9;
-    display: flex;
-    justify-content: center;
-  }
-
-  img {
-    width: 100%;
-    max-width: 480px;
-    border-radius: 12px;
-    object-fit: cover;
+    strong {
+      color: $navy;
+      font-weight: 700;
+    }
   }
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .info-content {
-    flex-direction: column;
-    text-align: left;
+.info-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $blue;
+  margin: 0 0 4px !important;
+}
 
-    .image {
-      order: -1;
-      margin-bottom: 20px;
-    }
+.info-highlight {
+  padding: 20px 22px !important;
+  background: $white;
+  border-radius: 14px;
+  border-left: 3px solid $blue;
+  box-shadow: 0 4px 16px rgba(0, 51, 102, 0.08);
+  font-size: 15px !important;
+}
+
+// ── Columna de imagen ──────────────────────────
+.image {
+  position: relative;
+
+  img {
+    width: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    display: block;
+    box-shadow:
+      0 24px 56px rgba(0, 51, 102, 0.2),
+      0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease;
+
+    &:hover { transform: scale(1.02); }
+  }
+
+  // Floater real (elemento HTML, no pseudo)
+  &__badge {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    background: $navy;
+    color: #fcd34d;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 51, 102, 0.3);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+}
+
+// ── Responsive ─────────────────────────────────
+@media (max-width: 900px) {
+  .info-wrapper {
+    border-left: none;
+    border-top: 4px solid $blue;
+  }
+
+  .info-content {
+    grid-template-columns: 1fr;
+  }
+
+  .image {
+    order: -1;
+    max-width: 480px;
+    margin-inline: auto;
+    width: 100%;
+
+    &__badge { bottom: -12px; right: 0; }
   }
 }

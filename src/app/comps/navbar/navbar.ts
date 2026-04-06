@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
-import { NgFor, } from '@angular/common';
+import { NgFor } from '@angular/common';
 
-type NavLink = { label: string; target: string };
+type NavLink = { label: string; target: string; isCta?: boolean };
 
 @Component({
   selector: 'app-navbar',
@@ -15,12 +15,16 @@ export class Navbar {
   open = false;
 
   logoSrc = 'assets/img/logo.png';
-  logoAlt = 'Logo';
+  logoAlt = 'Carla Vignale Seguros';
 
   links: NavLink[] = [
-    { label: 'Inicio',          target: 'top' },
-    { label: 'Sobre nosotros',  target: 'info' },
-    { label: 'Contactanos',     target: 'contacto' },
+    { label: 'Inicio',         target: 'top' },
+    { label: 'Nuestros Servicios', target: 'servi' },
+    { label: 'Nosotros',       target: 'info' },
+    { label: 'Aseguradoras',   target: 'carrusel' },
+    { label: 'Preguntas Frecuentes', target: 'faq' },
+    { label: 'Siniestros',     target: 'contacto' },
+    { label: '📋 Cotizar',    target: 'servi', isCta: true },
   ];
 
   instagram = 'https://www.instagram.com/car.vignale/';
@@ -46,9 +50,9 @@ export class Navbar {
     const el = document.getElementById(target);
     if (!el) return;
 
-    const headerOffset = 110; // ajustá si cambia la altura del navbar
+    const headerOffset = 110;
     const rect = el.getBoundingClientRect();
-    const y = rect.top + window.pageYOffset - headerOffset;
+    const y = rect.top + window.scrollY - headerOffset;
 
     window.scrollTo({ top: y, behavior: 'smooth' });
   }

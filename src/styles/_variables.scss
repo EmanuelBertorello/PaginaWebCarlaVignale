@@ -1,0 +1,40 @@
+// ─────────────────────────────────────────────
+// Carla Vignale — Design Tokens
+// ─────────────────────────────────────────────
+
+// Brand colors
+$navy:        #003366;   // primario corporativo
+$blue:        #007BFF;   // acento / CTA
+$blue-dark:   #0056cc;   // hover CTA
+$blue-light:  #E6F0FF;   // fondo de sección alternada
+$white:       #FFFFFF;
+$off-white:   #F8FAFD;
+
+// Text
+$text-primary:   #1a1a2e;
+$text-secondary: #4a5568;
+$text-muted:     #718096;
+
+// Status
+$success: #28a745;
+$warning: #ffc107;
+$danger:  #dc3545;
+
+// Borders & shadows
+$radius-sm:  8px;
+$radius-md:  12px;
+$radius-lg:  18px;
+$radius-xl:  24px;
+$radius-full: 999px;
+
+$shadow-sm:  0 2px 8px rgba(0, 51, 102, 0.08);
+$shadow-md:  0 8px 24px rgba(0, 51, 102, 0.12);
+$shadow-lg:  0 16px 40px rgba(0, 51, 102, 0.18);
+
+// Spacing
+$container-max: 1180px;
+$section-py:    clamp(48px, 7vw, 80px);
+
+// Typography
+$font-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-heading: "Poppins", "Montserrat", $font-base;

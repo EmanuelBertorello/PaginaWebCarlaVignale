@@ -1,51 +1,55 @@
 <header class="site-header" [class.scrolled]="scrolled">
+
+  <!-- Topbar: contacto rápido -->
   <div class="topbar">
     <div class="container">
-      <div class="topbar__spacer"></div>
-      <div class="topbar__links">
-        <a [href]="instagram" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="5"
-                  fill="none" stroke="currentColor" stroke-width="1.6" />
-            <circle cx="12" cy="12" r="3.8"
-                    fill="none" stroke="currentColor" stroke-width="1.6" />
-            <circle cx="17" cy="7" r="1.2" fill="currentColor" />
-          </svg>
+      <div class="topbar__left">
+        <a [href]="correo" class="topbar__contact" aria-label="Enviar correo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          carvignale&#64;gmail.com
         </a>
-        <a [href]="facebook" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1z"
-                  fill="currentColor" />
-          </svg>
+        <a href="tel:+5493416055454" class="topbar__contact" aria-label="Llamar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2a11.5 11.5 0 003.6 1.1c.6.1 1 .6 1 1.2V21a2 2 0 01-2 2A18 18 0 013 5a2 2 0 012-2h3.5c.6 0 1.1.4 1.2 1 .2 1.3.5 2.5 1.1 3.6.2.3.1.7-.2 1L6.6 10.8z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          341 605-5454
         </a>
-        <a [href]="correo" aria-label="Correo">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2"
-                  fill="none" stroke="currentColor" stroke-width="1.6" />
-            <path d="M3 7l9 6 9-6"
-                  fill="none" stroke="currentColor" stroke-width="1.6" />
-          </svg>
+      </div>
+
+      <div class="topbar__right">
+        <a [href]="instagram" target="_blank" rel="noopener" aria-label="Instagram" class="topbar__social">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+        </a>
+        <a [href]="facebook" target="_blank" rel="noopener" aria-label="Facebook" class="topbar__social">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
         </a>
       </div>
     </div>
   </div>
 
+  <!-- Brandbar: logo + CTA mobile -->
   <div class="brandbar">
     <div class="container">
       <a class="brand" (click)="scrollTo('top')" aria-label="Inicio">
-        <img [src]="logoSrc" [alt]="logoAlt" />
+        <img [src]="logoSrc" [alt]="logoAlt" width="76" height="76" />
       </a>
-      <button class="burger" type="button" (click)="toggle()" aria-label="Abrir menú">
-        <span [class.open]="open"></span>
-      </button>
+
+      <div class="brandbar__actions">
+        <a (click)="scrollTo('servi')" class="btn-cta btn-cta--primary" aria-label="Cotizar ahora">
+          Cotizar
+        </a>
+        <button class="burger" type="button" (click)="toggle()" [attr.aria-expanded]="open" aria-label="Abrir menú">
+          <span [class.open]="open"></span>
+        </button>
+      </div>
     </div>
   </div>
 
+  <!-- Menubar: navegación desktop -->
   <div class="menubar">
     <div class="container">
       <nav class="menu" aria-label="Navegación principal">
         <a *ngFor="let l of links"
            class="menu__link"
+           [class.menu__link--cta]="l.isCta"
            (click)="scrollTo(l.target)">
           {{ l.label }}
         </a>
@@ -53,13 +57,23 @@
     </div>
   </div>
 
+  <!-- Drawer móvil -->
   <div class="drawer" [class.open]="open" (click)="close()">
-    <nav class="drawer__panel" (click)="$event.stopPropagation()">
+    <nav class="drawer__panel" (click)="$event.stopPropagation()" role="navigation" aria-label="Menú móvil">
+      <div class="drawer__header">
+        <img [src]="logoSrc" [alt]="logoAlt" width="48" height="48" />
+        <button class="drawer__close" type="button" (click)="close()" aria-label="Cerrar menú">✕</button>
+      </div>
       <a *ngFor="let l of links"
          class="drawer__link"
+         [class.drawer__link--cta]="l.isCta"
          (click)="scrollTo(l.target)">
         {{ l.label }}
       </a>
+      <div class="drawer__footer">
+        <a href="tel:+5493416055454" class="drawer__tel">341 605-5454</a>
+      </div>
     </nav>
   </div>
+
 </header>

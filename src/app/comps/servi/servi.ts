@@ -2,11 +2,13 @@
 import { Component } from '@angular/core';
 import {
   NgFor,
+  NgIf,
   NgSwitch,
   NgSwitchCase,
   NgSwitchDefault,
 } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 type ServiId =
   | 'auto'
@@ -26,6 +28,7 @@ interface ServiItem {
   id: ServiId;
   name: string;
   emoji: string;
+  route?: string;
 }
 
 @Component({
@@ -33,28 +36,30 @@ interface ServiItem {
   standalone: true,
   imports: [
     NgFor,
+    NgIf,
     NgSwitch,
     NgSwitchCase,
     NgSwitchDefault,
     FormsModule,
+    RouterLink,
   ],
   templateUrl: './servi.html',
   styleUrl: './servi.scss',
 })
 export class Servi {
   services: ServiItem[] = [
-    { id: 'auto',          name: 'Automotor',             emoji: '🚗' },
-    { id: 'moto',          name: 'Moto',                  emoji: '🏍️' },
+    { id: 'auto',          name: 'Automotor',             emoji: '🚗',  route: '/seguros/automotor' },
+    { id: 'moto',          name: 'Moto',                  emoji: '🏍️', route: '/seguros/moto' },
     { id: 'embarcaciones', name: 'Embarcaciones',         emoji: '🚤' },
-    { id: 'hogar',         name: 'Hogar',                 emoji: '🏠' },
+    { id: 'hogar',         name: 'Hogar',                 emoji: '🏠',  route: '/seguros/hogar' },
     { id: 'incendio',      name: 'Incendio',              emoji: '🔥' },
     { id: 'caucion',       name: 'Caución',               emoji: '🏢' },
     { id: 'accidentes',    name: 'Accidentes Personales', emoji: '🩺' },
-    { id: 'vida',          name: 'Vida',                  emoji: '❤️' },
+    { id: 'vida',          name: 'Vida',                  emoji: '❤️',  route: '/seguros/vida' },
     { id: 'mala-praxis',   name: 'Mala Praxis',           emoji: '⚕️' },
     { id: 'mascota',       name: 'Mascota',               emoji: '🐾' },
-    { id: 'viajes',        name: 'Viajes',                emoji: '✈️' },
-    { id: 'art',           name: 'ART',                   emoji: '💼' },
+    { id: 'viajes',        name: 'Viajes',                emoji: '✈️',  route: '/seguros/viajes' },
+    { id: 'art',           name: 'ART',                   emoji: '💼',  route: '/seguros/art' },
   ];
 
   selectedId: ServiId | null = null;

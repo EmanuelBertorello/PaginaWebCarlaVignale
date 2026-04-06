@@ -1,105 +1,141 @@
-/* =========================
-   Componente SERVI (productos)
-   ========================= */
+// ── Servi — Bento Grid ─────────────────────────
+$navy:   #003366;
+$blue:   #007BFF;
+$bg:     #F0F4F8;
+$white:  #FFFFFF;
+$text:   #1a1a2e;
+$soft:   #4a5568;
+$muted:  #718096;
 
+// ── Sección contenedora ────────────────────────
 .servi {
-  padding: clamp(40px, 6vw, 72px) 0 72px;
-  background: #f5f7fb; /* fondo suave tipo landing */
+  padding: clamp(64px, 9vw, 100px) 0 clamp(80px, 11vw, 120px);
+  background: $white;
 }
 
 .servi__wrap {
   max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 16px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 28px);
 }
 
-/* Título y subtítulo */
+// ── Header ─────────────────────────────────────
+.servi__eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $blue;
+  margin-bottom: 10px;
+}
 
 .servi__title {
-  margin: 0 0 4px;
-  font-size: clamp(26px, 3.6vw, 40px);
+  margin: 0 0 6px;
+  font-size: clamp(1.8rem, 3.8vw, 3rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #0a2e50; /* azul fuerte */
+  letter-spacing: -0.03em;
+  color: $navy;
 }
 
 .servi__subtitle {
-  margin: 0 0 24px;
+  margin: 0 0 48px;
   font-size: 15px;
-  font-weight: 500;
-  color: #6b6b6b;
+  color: $muted;
+  font-weight: 400;
 }
 
-/* Grid de tarjetas */
-
+// ── Bento Grid ─────────────────────────────────
+// 12 columnas virtuales; tarjetas usan 3, 4, 6 col.
 .servi__grid {
-  position: relative;
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(130px, auto);
+  gap: 14px;
 }
 
-@media (max-width: 1100px) {
-  .servi__grid {
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-  }
-}
-
-@media (max-width: 860px) {
-  .servi__grid {
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .servi__grid {
-    grid-template-columns: minmax(220px, 1fr);
-  }
-}
-
-/* =========================
-   Tarjeta
-   ========================= */
-
+// ── Tarjeta base ───────────────────────────────
 .servi-card {
   position: relative;
   cursor: pointer;
-  border-radius: 18px;
-  background: #ffffff;
-  border: 1px solid rgba(10, 46, 80, 0.06);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  background: $white;
+  border: 1.5px solid rgba(0, 51, 102, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 51, 102, 0.06);
+  // NO overflow:hidden — el panel de detalles fluye hacia abajo
   overflow: visible;
-  transform: translateY(0) scale(1);
   transition:
-    transform 160ms ease,
-    box-shadow 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
+    transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+
+  // ── Bento positions (12 col) ────────────────
+  // Fila 1
+  &:nth-child(1)  { grid-column: span 4; }  // Auto
+  &:nth-child(2)  { grid-column: span 4; }  // Moto
+  &:nth-child(3)  { grid-column: span 4; }  // Embarcaciones
+  // Fila 2: asimétrica
+  &:nth-child(4)  { grid-column: span 3; }  // Hogar
+  &:nth-child(5)  { grid-column: span 3; }  // Incendio
+  &:nth-child(6)  { grid-column: span 6; }  // Caución — destaca
+  // Fila 3
+  &:nth-child(7)  { grid-column: span 4; }  // Accidentes
+  &:nth-child(8)  { grid-column: span 4; }  // Vida
+  &:nth-child(9)  { grid-column: span 4; }  // Mala Praxis
+  // Fila 4
+  &:nth-child(10) { grid-column: span 4; }  // Mascota
+  &:nth-child(11) { grid-column: span 4; }  // Viajes
+  &:nth-child(12) { grid-column: span 4; }  // ART
+
+  &:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 16px 40px rgba(0, 51, 102, 0.14);
+    border-color: rgba(0, 123, 255, 0.22);
+    z-index: 1;
+  }
+
+  &.is-selected {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 20px 48px rgba(0, 51, 102, 0.18);
+    border-color: $blue;
+    z-index: 3;
+  }
 }
 
-.servi-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+// Tarjeta wide (posición 6): tono accent
+.servi-card:nth-child(6) {
+  background: linear-gradient(135deg, $navy 0%, #005299 100%);
+  border-color: transparent;
+
+  .servi-card__name { color: #ffffff; }
+  .servi-card__emoji { font-size: clamp(40px, 5vw, 56px); }
+  .servi-card__msg  { color: rgba(255, 255, 255, 0.8); }
+
+  .servi-card__label { flex: 1; display: flex; align-items: center; }
+  .servi-card__name  { font-size: 20px; }
 }
 
-/* Contenido principal (nombre + icono) */
-
+// ── Interior de la tarjeta ──────────────────────
 .servi-card__main {
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
+  grid-template-columns: 1.2fr 0.9fr;
   align-items: center;
-  min-height: 110px;
+  min-height: 120px;
+  padding: 4px 0;
+  border-radius: 20px; // hereda el radius de la tarjeta
 }
 
 .servi-card__label {
-  padding: 16px 18px;
+  padding: 18px 20px;
 }
 
 .servi-card__name {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  color: #1c1c1c;
+  color: $navy;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
 }
 
 .servi-card__icon {
@@ -107,160 +143,162 @@
   place-items: center;
   height: 100%;
   border-radius: 0 18px 18px 0;
-  background: linear-gradient(135deg, #edf3ff 0%, #f5f8ff 100%);
+  background: linear-gradient(135deg, #e8f0ff 0%, #f0f6ff 100%);
+  transition: background 0.2s;
+
+  .servi-card:hover & {
+    background: linear-gradient(135deg, #d4e4ff 0%, #e8f0ff 100%);
+  }
 }
 
 .servi-card__emoji {
-  font-size: clamp(32px, 4vw, 46px);
+  font-size: clamp(26px, 3.5vw, 38px);
+  line-height: 1;
 }
 
-/* Estado seleccionado: sube un poco y va al frente */
-
-.servi-card.is-selected {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
-  border-color: rgba(10, 46, 80, 0.22);
-  z-index: 3;
-}
-
-/* =========================
-   Panel deslizante de detalles
-   (solo se muestra en la tarjeta seleccionada)
-   ========================= */
-
+// ── Panel deslizante de detalles ───────────────
+// Fluye en el DOM (no absolute) — sin riesgo de ser clippeado por el padre
 .servi-card__details {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%; /* aparece debajo de la tarjeta */
-  padding: 12px 18px 16px;
-  background: #ffffff;
-  border-radius: 0 0 18px 18px;
-  border: 1px solid rgba(10, 46, 80, 0.12);
-  border-top: none;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   align-items: stretch;
 
-  opacity: 0;
+  padding: 0 18px;
+  background: $white;
+  border-radius: 0 0 20px 20px;
+  border: 1.5px solid $blue;
+  border-top: none;
+  box-shadow: 0 16px 40px rgba(0, 51, 102, 0.14);
+
+  // estado cerrado
   max-height: 0;
-  pointer-events: none;
-  transform: translateY(-6px);
   overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 
   transition:
-    opacity 220ms ease,
-    max-height 240ms ease,
-    transform 220ms ease;
+    max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity    0.24s ease,
+    padding    0.28s ease;
 }
 
-/* Cuando la tarjeta está seleccionada, el panel “se desliza” */
 .servi-card.is-selected .servi-card__details {
+  max-height: 400px;
+  overflow: hidden;
   opacity: 1;
-  max-height: 260px; /* suficiente para inputs + botón */
   pointer-events: auto;
-  transform: translateY(0);
+  padding: 14px 18px 18px;
 }
-
-/* Texto dentro del panel */
 
 .servi-card__msg {
-  margin: 4px 0 8px;
+  margin: 4px 0 6px;
   font-size: 13px;
-  line-height: 1.5;
-  color: #444;
+  line-height: 1.55;
+  color: $soft;
 }
 
-/* =========================
-   Formulario (AUTO / MOTO / EMBARCACIONES)
-   ========================= */
-
+// ── Formulario ─────────────────────────────────
 .servi-card__form {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 8px 12px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px 10px;
   margin-bottom: 4px;
 }
 
 .servi-card__field {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+  gap: 3px;
+
+  label {
+    font-size: 11px;
+    font-weight: 700;
+    color: $navy;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(0, 51, 102, 0.12);
+    background: #f8faff;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+
+    &:focus {
+      border-color: $blue;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+      background: $white;
+    }
+  }
 }
 
-.servi-card__field label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #1a3c47; /* azul petróleo de la paleta */
-}
-
-.servi-card__field input {
-  width: 100%;
-  box-sizing: border-box;         // <-- para que no se pase del ancho
-  font-size: 12px;
-  padding: 4px 8px;               // un poco más chico
-  border-radius: 10px;
-  border: 1px solid #d1d5db;
-  outline: none;
-  background-color: #fff;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    background-color 160ms ease;
-}
-
-
-.servi-card__field input:focus {
-  border-color: #0a2e50;
-  box-shadow: 0 0 0 1px rgba(10, 46, 80, 0.18);
-  background-color: #f8fbff;
-}
-
-/* =========================
-   Botón "Solicitar tu cotización"
-   ========================= */
-
+// ── Botón CTA ──────────────────────────────────
 .servi-card__btn {
-  align-self: center;
-  margin-top: 4px;
-  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  padding: 9px 18px;
   border-radius: 999px;
   border: none;
-  outline: none;
   cursor: pointer;
   text-decoration: none;
-
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
+  background: $navy;
+  color: $white;
+  box-shadow: 0 4px 14px rgba(0, 51, 102, 0.3);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
 
-  background: #0a2e50;        /* azul fuerte (paleta) */
-  color: #ffffff;
-
-  box-shadow: 0 10px 22px rgba(10, 46, 80, 0.35);
-  transition:
-    transform 120ms ease,
-    box-shadow 160ms ease,
-    background-color 160ms ease;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.4);
+    background: #004a99;
+  }
 }
 
-.servi-card__btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(10, 46, 80, 0.45);
-  background: #0c3964;
+.servi-card__more {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: $blue;
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.15s;
+
+  &:hover { color: $navy; text-decoration: underline; }
 }
 
-.servi-card__btn:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 16px rgba(10, 46, 80, 0.35);
+// ── Espacio extra abajo para los detalles expandidos ─
+.servi { padding-bottom: clamp(80px, 12vw, 130px); }
+
+// ── Responsive ─────────────────────────────────
+@media (max-width: 1024px) {
+  .servi__grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+  }
+
+  .servi-card:nth-child(n) { grid-column: span 3; }
+  .servi-card:nth-child(6) { grid-column: span 6; }
 }
 
-/* Un poco más de aire abajo para que las tarjetas
-   expandidas no choquen con lo que sigue */
-.servi {
-  padding-bottom: 88px;
+@media (max-width: 640px) {
+  .servi__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 10px;
+  }
+
+  .servi-card:nth-child(n) { grid-column: span 1; }
+  .servi-card:nth-child(6) { grid-column: span 2; }
 }

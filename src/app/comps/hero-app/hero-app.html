@@ -1,24 +1,108 @@
-<section class="hero-app">
-  <div class="hero-app__wrap">
-    <div class="hero-app__copy">
-      <h1 class="hero-app__title">{{ title }}</h1>
+<section class="hero" aria-label="Portada principal">
 
-      <ul class="hero-app__list">
-        <li *ngFor="let b of bullets">{{ b }}</li>
-      </ul>
+  <!-- Capa 1: fondo con imagen rotante -->
+  <figure class="hero__bg" aria-hidden="true">
+    <img
+      [src]="phoneImg"
+      [class.is-hidden]="isHidden"
+      alt=""
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+    />
+    <div class="hero__bg-overlay"></div>
+  </figure>
 
-      <div class="hero-app__stores">
-        <!-- botones, etc -->
+  <!-- Capa 2: blobs decorativos CSS -->
+  <div class="hero__blobs" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+  </div>
+
+  <!-- Capa 3: contenido -->
+  <div class="hero__stage">
+
+    <!-- Eyebrow -->
+    <div class="hero__badge-row">
+      <span class="hero__badge">
+        <span class="badge__dot"></span>
+        PAS Matrícula N° 7192 · SSN Habilitada
+      </span>
+      <span class="hero__badge hero__badge--gold">
+        ★ 4.9 Google
+      </span>
+    </div>
+
+    <!-- Titular oversized -->
+    <h1 class="hero__title">
+      <span class="hero__title-line hero__title-line--1">Tus seguros</span>
+      <span class="hero__title-line hero__title-line--2">en buenas</span>
+      <span class="hero__title-line hero__title-line--3">manos.</span>
+    </h1>
+
+    <!-- Sub -->
+    <p class="hero__sub">
+      Más de 15 años ayudando a familias y empresas de Rosario a pagar menos
+      y estar mejor cubiertos. Sin tecnicismos, sin letra chica.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero__actions">
+      <a
+        class="hero-cta hero-cta--primary"
+        href="https://wa.me/5493416055454?text=Hola%2C%20quiero%20cotizar%20mi%20seguro."
+        target="_blank"
+        rel="noopener"
+        aria-label="Cotizar seguro por WhatsApp"
+      >
+        <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
+          <path d="M19.1 17.6c-.3-.2-1.7-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.6 7.6 0 01-3.7-3.2c-.3-.4.3-.4.8-1.4s.1-1-.1-1.2l-.5-.6c-.1-.2-.3-.2-.5-.2h-.4a.8.8 0 00-.6.3 2.6 2.6 0 00-.8 1.9 4.6 4.6 0 001 2.4 10.5 10.5 0 004.3 3.9 9.9 9.9 0 001.9.7 3.1 3.1 0 001.5.1 2.6 2.6 0 001.7-1.1 2.1 2.1 0 00.1-1.1c0-.1-.2-.2-.5-.3z" fill="currentColor"/>
+          <path d="M26.7 5.3A13 13 0 005.3 26.7L3 29l2.6-.7A13 13 0 0016 29a13 13 0 0010.7-20.7z" fill="currentColor"/>
+        </svg>
+        Cotizá ahora — es gratis
+      </a>
+
+      <a
+        class="hero-cta hero-cta--ghost"
+        href="tel:+5493416055454"
+        aria-label="Llamar a Carla Vignale"
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+          <path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2a11.5 11.5 0 003.6 1.1c.6.1 1 .6 1 1.2V21a2 2 0 01-2 2A18 18 0 013 5a2 2 0 012-2h3.5c.6 0 1.1.4 1.2 1 .2 1.3.5 2.5 1.1 3.6.2.3.1.7-.2 1L6.6 10.8z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        341 605-5454
+      </a>
+    </div>
+
+    <!-- Glass stats row -->
+    <div class="hero__glass-row">
+      <div class="glass-stat">
+        <span class="glass-stat__num">+1.200</span>
+        <span class="glass-stat__label">Clientes activos</span>
+      </div>
+      <div class="glass-stat__divider" aria-hidden="true"></div>
+      <div class="glass-stat">
+        <span class="glass-stat__num">9</span>
+        <span class="glass-stat__label">Aseguradoras</span>
+      </div>
+      <div class="glass-stat__divider" aria-hidden="true"></div>
+      <div class="glass-stat">
+        <span class="glass-stat__num">40%</span>
+        <span class="glass-stat__label">Ahorro promedio</span>
+      </div>
+      <div class="glass-stat__divider" aria-hidden="true"></div>
+      <div class="glass-stat">
+        <span class="glass-stat__num">15+</span>
+        <span class="glass-stat__label">Años de experiencia</span>
       </div>
     </div>
 
-<figure class="hero-app__phone">
-  <img
-    [src]="phoneImg"
-    [alt]="phoneAlt"
-    [class.is-hidden]="isHidden"
-  />
-</figure>
-
   </div>
+
+  <!-- Capa 4: scroll indicator -->
+  <a class="hero__scroll" href="#servi" aria-label="Ver servicios">
+    <span class="hero__scroll-line"></span>
+  </a>
+
 </section>

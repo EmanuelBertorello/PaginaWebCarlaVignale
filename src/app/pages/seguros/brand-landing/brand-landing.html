@@ -1,0 +1,259 @@
+<!-- 404 si la marca no existe -->
+<div *ngIf="notFound" class="bl-notfound">
+  <h1>Marca no encontrada</h1>
+  <p>La landing que buscás no existe. <a routerLink="/">Volvé al inicio</a>.</p>
+</div>
+
+<!-- Landing principal -->
+<main *ngIf="brand" class="brand-landing" [style.--accent]="brand.accentColor" [style.--accent-dark]="brand.accentColorDark">
+
+  <!-- ── 1. HERO ──────────────────────────────────────────── -->
+  <section class="bl-hero" [style.background-image]="'url(' + brand.heroImage + ')'">
+    <div class="bl-hero__overlay"></div>
+    <div class="bl-hero__content">
+
+      <div class="bl-hero__copy">
+        <span class="bl-eyebrow">{{ brand.patentamiento }}</span>
+        <h1 class="bl-hero__title">{{ brand.heroTitle }}</h1>
+        <p class="bl-hero__sub">{{ brand.heroSubtitle }}</p>
+
+        <div class="bl-hero__actions">
+          <a [href]="waHref(brand)" target="_blank" rel="noopener" class="bl-btn bl-btn--primary">
+            <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
+              <path d="M19.1 17.6c-.3-.2-1.7-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.6 7.6 0 01-3.7-3.2c-.3-.4.3-.4.8-1.4s.1-1-.1-1.2l-.5-.6c-.1-.2-.3-.2-.5-.2h-.4a.8.8 0 00-.6.3 2.6 2.6 0 00-.8 1.9 4.6 4.6 0 001 2.4 10.5 10.5 0 004.3 3.9 9.9 9.9 0 001.9.7 3.1 3.1 0 001.5.1 2.6 2.6 0 001.7-1.1 2.1 2.1 0 00.1-1.1c0-.1-.2-.2-.5-.3z" fill="currentColor"/>
+              <path d="M26.7 5.3A13 13 0 005.3 26.7L3 29l2.6-.7A13 13 0 0016 29a13 13 0 0010.7-20.7zm-10.7 22a10.6 10.6 0 01-5.4-1.5l-.4-.2-3.2.8.9-3.1-.2-.4A10.7 10.7 0 1116 27.3z" fill="currentColor"/>
+            </svg>
+            Recotizá ahora — Es gratis
+          </a>
+          <a routerLink="/" class="bl-btn bl-btn--ghost">← Volver al inicio</a>
+        </div>
+
+        <!-- Trust micro-badges -->
+        <div class="bl-hero__trust">
+          <span>🏛️ PAS Matrícula N° 7192</span>
+          <span>★ 4.9 en Google</span>
+          <span>📋 +15 años de experiencia</span>
+        </div>
+      </div>
+
+      <!-- Stat flotante en hero -->
+      <div class="bl-hero__stat-card">
+        <p class="bl-hero__stat-label">Ahorro promedio al recotizar</p>
+        <p class="bl-hero__stat-number">{{ savingsPercent(brand) }}%</p>
+        <p class="bl-hero__stat-sub">{{ formatARS(brand.savings) }}/mes de diferencia</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 2. STATS DASHBOARD ──────────────────────────────── -->
+  <section class="bl-stats">
+    <div class="bl-wrap">
+      <p class="bl-eyebrow">Mercado vs. Carla Vignale</p>
+      <h2>¿Cuánto pagás de más por tu {{ brand.fullName }}?</h2>
+
+      <div class="bl-stats__grid">
+
+        <div class="bl-stats__card bl-stats__card--market">
+          <p class="bl-stats__card-label">Precio promedio en el mercado</p>
+          <p class="bl-stats__card-price">{{ formatARS(brand.marketPrice) }}<span>/mes</span></p>
+          <p class="bl-stats__card-note">Todo Riesgo — Promedio del mercado</p>
+          <div class="bl-stats__card-bar">
+            <div class="bl-stats__card-bar-fill" style="width:100%"></div>
+          </div>
+        </div>
+
+        <div class="bl-stats__vs" aria-hidden="true">VS</div>
+
+        <div class="bl-stats__card bl-stats__card--carla">
+          <div class="bl-stats__badge">Con Carla</div>
+          <p class="bl-stats__card-label">Precio con Carla Vignale</p>
+          <p class="bl-stats__card-price">{{ formatARS(brand.carlaPrice) }}<span>/mes</span></p>
+          <p class="bl-stats__card-note">Todo Riesgo — Mejor precio disponible</p>
+          <div class="bl-stats__card-bar">
+            <div class="bl-stats__card-bar-fill" [style.width]="(brand.carlaPrice / brand.marketPrice * 100) + '%'"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bl-stats__savings">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-4h2v4zm0-6H11V8h2v2z" fill="currentColor"/></svg>
+        <p>Ahorrás <strong>{{ formatARS(brand.savings) }}/mes</strong> — <strong>{{ formatARS(brand.savings * 12) }}/año</strong> solo por cambiar de aseguradora.</p>
+      </div>
+
+      <a [href]="waHref(brand)" target="_blank" rel="noopener" class="bl-btn bl-btn--primary bl-btn--center">
+        Quiero esta recotización mejorada
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── 3. COBERTURAS ───────────────────────────────────── -->
+  <section class="bl-coverages">
+    <div class="bl-wrap">
+      <p class="bl-eyebrow">¿Qué necesitás proteger?</p>
+      <h2>Elegí la cobertura ideal para tu {{ brand.fullName }}</h2>
+
+      <div class="bl-cov__grid">
+        <article
+          *ngFor="let cov of brand.coverages"
+          class="bl-cov__card"
+          [class.bl-cov__card--highlighted]="cov.highlighted">
+
+          <div *ngIf="cov.badge" class="bl-cov__badge">{{ cov.badge }}</div>
+
+          <h3 class="bl-cov__name">{{ cov.name }}</h3>
+          <p class="bl-cov__tagline">{{ cov.tagline }}</p>
+
+          <p class="bl-cov__price">
+            {{ formatARS(cov.price) }}<span>/mes</span>
+          </p>
+
+          <ul class="bl-cov__features">
+            <li *ngFor="let f of cov.features">
+              <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+                <path d="M7 10l3 3 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              {{ f }}
+            </li>
+          </ul>
+
+          <a
+            [href]="waHref(brand)"
+            target="_blank"
+            rel="noopener"
+            class="bl-btn bl-cov__cta"
+            [class.bl-btn--primary]="cov.highlighted"
+            [class.bl-btn--outline]="!cov.highlighted">
+            Cotizar {{ cov.name }}
+          </a>
+
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. CARLA CARD ───────────────────────────────────── -->
+  <section class="bl-carla">
+    <div class="bl-wrap">
+      <div class="bl-carla__card">
+
+        <div class="bl-carla__media">
+          <img
+            src="assets/img/logo.png"
+            alt="Carla Vignale — Productora de Seguros"
+            width="120"
+            height="120"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="bl-carla__content">
+          <span class="bl-eyebrow">Tu asesora personal</span>
+          <h2 class="bl-carla__name">Carla Vignale</h2>
+          <p class="bl-carla__title">Productora Asesora de Seguros · Matrícula N° 7192 · SSN</p>
+
+          <p class="bl-carla__bio">
+            Más de 15 años ayudando a familias y empresas de Rosario a proteger lo que más les importa.
+            Trabajo con 9 aseguradoras líderes del mercado para conseguirte <strong>la mejor cobertura al menor precio posible</strong>.
+            Cuando tenés un siniestro, yo hablo con la aseguradora por vos.
+          </p>
+
+          <div class="bl-carla__trust">
+            <div class="bl-carla__rating">
+              <span class="stars">★★★★★</span>
+              <span>4.9 / 5 en Google Reviews (47 opiniones)</span>
+            </div>
+          </div>
+
+          <a
+            [href]="waHref(brand)"
+            target="_blank"
+            rel="noopener"
+            class="bl-btn bl-btn--primary bl-btn--lg"
+          >
+            <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
+              <path d="M19.1 17.6c-.3-.2-1.7-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.6 7.6 0 01-3.7-3.2c-.3-.4.3-.4.8-1.4s.1-1-.1-1.2l-.5-.6c-.1-.2-.3-.2-.5-.2h-.4a.8.8 0 00-.6.3 2.6 2.6 0 00-.8 1.9 4.6 4.6 0 001 2.4 10.5 10.5 0 004.3 3.9 9.9 9.9 0 001.9.7 3.1 3.1 0 001.5.1 2.6 2.6 0 001.7-1.1 2.1 2.1 0 00.1-1.1c0-.1-.2-.2-.5-.3z" fill="currentColor"/>
+              <path d="M26.7 5.3A13 13 0 005.3 26.7L3 29l2.6-.7A13 13 0 0016 29a13 13 0 0010.7-20.7zm-10.7 22a10.6 10.6 0 01-5.4-1.5l-.4-.2-3.2.8.9-3.1-.2-.4A10.7 10.7 0 1116 27.3z" fill="currentColor"/>
+            </svg>
+            Escribile a Carla ahora
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. FAQ dinámico ─────────────────────────────────── -->
+  <section
+    class="bl-faq"
+    itemscope
+    itemtype="https://schema.org/FAQPage"
+    aria-labelledby="bl-faq-title">
+
+    <div class="bl-wrap bl-faq__inner">
+
+      <div class="bl-faq__header">
+        <p class="bl-eyebrow">Preguntas frecuentes</p>
+        <h2 id="bl-faq-title">Todo sobre el seguro de tu {{ brand.fullName }}</h2>
+      </div>
+
+      <div class="bl-faq__list">
+        <div
+          *ngFor="let faq of brand.faqs; let i = index"
+          class="bl-faq__item"
+          [class.bl-faq__item--open]="openFaqIndex === i"
+          itemscope
+          itemtype="https://schema.org/Question">
+
+          <button
+            type="button"
+            class="bl-faq__q"
+            [attr.aria-expanded]="openFaqIndex === i"
+            (click)="toggleFaq(i)"
+            itemprop="name">
+            <span>{{ faq.question }}</span>
+            <svg class="bl-faq__chevron" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div
+            class="bl-faq__a"
+            [attr.hidden]="openFaqIndex === i ? null : ''"
+            itemscope
+            itemtype="https://schema.org/Answer">
+            <p itemprop="text">{{ faq.answer }}</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 6. CTA final ────────────────────────────────────── -->
+  <section class="bl-cta-final">
+    <div class="bl-wrap">
+      <p class="bl-eyebrow bl-eyebrow--light">Sin costo · Sin compromiso</p>
+      <h2>¿Seguís pagando de más por tu {{ brand.fullName }}?</h2>
+      <p>Envianos un mensaje y en menos de 24 horas te presentamos la recotización mejorada.</p>
+      <a [href]="waHref(brand)" target="_blank" rel="noopener" class="bl-btn bl-btn--primary bl-btn--lg">
+        Solicitar recotización gratuita
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- WhatsApp FAB de sección (solo en landing de marca) -->
+<a
+  *ngIf="brand"
+  [href]="waHref(brand)"
+  target="_blank"
+  rel="noopener"
+  class="bl-wa-fab"
+  aria-label="Hablar con Carla por WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.1 17.6c-.3-.2-1.7-.8-1.9-.9s-.4-.1-.6.1-.7.9-.9 1.1-.3.2-.6.1a7.6 7.6 0 01-3.7-3.2c-.3-.4.3-.4.8-1.4s.1-1-.1-1.2l-.5-.6c-.1-.2-.3-.2-.5-.2h-.4a.8.8 0 00-.6.3 2.6 2.6 0 00-.8 1.9 4.6 4.6 0 001 2.4 10.5 10.5 0 004.3 3.9 9.9 9.9 0 001.9.7 3.1 3.1 0 001.5.1 2.6 2.6 0 001.7-1.1 2.1 2.1 0 00.1-1.1c0-.1-.2-.2-.5-.3z" fill="currentColor"/><path d="M26.7 5.3A13 13 0 005.3 26.7L3 29l2.6-.7A13 13 0 0016 29a13 13 0 0010.7-20.7zm-10.7 22a10.6 10.6 0 01-5.4-1.5l-.4-.2-3.2.8.9-3.1-.2-.4A10.7 10.7 0 1116 27.3z" fill="currentColor"/></svg>
+</a>

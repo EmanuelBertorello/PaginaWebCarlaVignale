@@ -1,8 +1,11 @@
-<section class="stats-strip">
-  <div class="stats-strip__bg"></div>
-  <div class="stats-strip__overlay"></div>
+<section class="kpi-band" aria-label="Estadísticas clave">
+  <div class="kpi-band__wrap">
 
-  <div class="stats-strip__content">
-    <h2>{{ text }}</h2>
+    <article class="kpi-card" *ngFor="let k of kpis">
+      <span class="kpi-card__num">{{ k.value }}</span>
+      <span class="kpi-card__label">{{ k.label }}</span>
+      <span class="kpi-card__note" *ngIf="k.note">{{ k.note }}</span>
+    </article>
+
   </div>
 </section>
